@@ -21,7 +21,10 @@ export default function PortfolioSection() {
       {/* Background                                                         */}
       {/* ------------------------------------------------------------------ */}
 
-      <div className="absolute inset-0 -z-10">
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 overflow-hidden"
+      >
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/[0.02] to-transparent" />
 
         <div className="absolute left-1/2 top-0 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-primary/5 blur-[140px]" />
@@ -37,19 +40,12 @@ export default function PortfolioSection() {
         {/* ------------------------------------------------------------------ */}
 
         <motion.div
-          initial={{
-            opacity: 0,
-            y: 30,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-          }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{
             duration: 0.5,
+            ease: "easeOut",
           }}
           className="mx-auto mb-20 max-w-4xl text-center"
         >
@@ -76,7 +72,7 @@ export default function PortfolioSection() {
         </motion.div>
 
         {/* ------------------------------------------------------------------ */}
-        {/* Bento Grid                                                         */}
+        {/* Portfolio Grid                                                     */}
         {/* ------------------------------------------------------------------ */}
 
         <BentoGrid>
