@@ -3,7 +3,7 @@
 export const API_CONFIG = {
   BASE_URL:
     process.env.NEXT_PUBLIC_API_URL ??
-    "https://portfolio-backend-ovqj.onrender.com/api/v1",
+    "https://portfolio-backend-ovqj.onrender.com",
 
   TIMEOUT: 30_000,
 
