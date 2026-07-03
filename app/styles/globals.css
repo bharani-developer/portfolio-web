@@ -1,0 +1,3301 @@
+/* ==========================================================================
+   GLOBALS.CSS
+   PART 1A.1.1
+   --------------------------------------------------------------------------
+   Next.js 16
+   React 19
+   Tailwind CSS v4
+   ========================================================================== */
+
+@import "tailwindcss";
+
+/* ==========================================================================
+   DARK MODE VARIANT
+   ========================================================================== */
+
+@custom-variant dark (&:is(.dark *));
+
+/* ==========================================================================
+   DESIGN TOKENS
+   ========================================================================== */
+
+@theme {
+  /* ------------------------------------------------------------------------
+     Brand Palette
+     ------------------------------------------------------------------------ */
+
+  --color-brand-50: #ecfeff;
+  --color-brand-100: #cffafe;
+  --color-brand-200: #a5f3fc;
+  --color-brand-300: #67e8f9;
+  --color-brand-400: #22d3ee;
+  --color-brand-500: #06b6d4;
+  --color-brand-600: #0891b2;
+  --color-brand-700: #0e7490;
+  --color-brand-800: #155e75;
+  --color-brand-900: #164e63;
+  --color-brand-950: #083344;
+
+  /* ------------------------------------------------------------------------
+     Primary Palette
+     ------------------------------------------------------------------------ */
+
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
+  --color-primary-950: #172554;
+
+  /* ------------------------------------------------------------------------
+     Purple Accent
+     ------------------------------------------------------------------------ */
+
+  --color-purple-50: #faf5ff;
+  --color-purple-100: #f3e8ff;
+  --color-purple-200: #e9d5ff;
+  --color-purple-300: #d8b4fe;
+  --color-purple-400: #c084fc;
+  --color-purple-500: #a855f7;
+  --color-purple-600: #9333ea;
+  --color-purple-700: #7e22ce;
+  --color-purple-800: #6b21a8;
+  --color-purple-900: #581c87;
+  --color-purple-950: #3b0764;
+
+  /* ------------------------------------------------------------------------
+     Emerald Accent
+     ------------------------------------------------------------------------ */
+
+  --color-success-50: #ecfdf5;
+  --color-success-100: #d1fae5;
+  --color-success-200: #a7f3d0;
+  --color-success-300: #6ee7b7;
+  --color-success-400: #34d399;
+  --color-success-500: #10b981;
+  --color-success-600: #059669;
+  --color-success-700: #047857;
+  --color-success-800: #065f46;
+  --color-success-900: #064e3b;
+
+  /* ------------------------------------------------------------------------
+     Warning Palette
+     ------------------------------------------------------------------------ */
+
+  --color-warning-50: #fffbeb;
+  --color-warning-100: #fef3c7;
+  --color-warning-200: #fde68a;
+  --color-warning-300: #fcd34d;
+  --color-warning-400: #fbbf24;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+  --color-warning-700: #b45309;
+  --color-warning-800: #92400e;
+  --color-warning-900: #78350f;
+
+  /* ------------------------------------------------------------------------
+     Error Palette
+     ------------------------------------------------------------------------ */
+
+  --color-danger-50: #fef2f2;
+  --color-danger-100: #fee2e2;
+  --color-danger-200: #fecaca;
+  --color-danger-300: #fca5a5;
+  --color-danger-400: #f87171;
+  --color-danger-500: #ef4444;
+  --color-danger-600: #dc2626;
+  --color-danger-700: #b91c1c;
+  --color-danger-800: #991b1b;
+  --color-danger-900: #7f1d1d;
+
+  /* ------------------------------------------------------------------------
+     Neutral Palette
+     ------------------------------------------------------------------------ */
+
+  --color-neutral-0: #ffffff;
+
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f4f4f5;
+  --color-neutral-200: #e4e4e7;
+  --color-neutral-300: #d4d4d8;
+  --color-neutral-400: #a1a1aa;
+  --color-neutral-500: #71717a;
+  --color-neutral-600: #52525b;
+  --color-neutral-700: #3f3f46;
+  --color-neutral-800: #27272a;
+  --color-neutral-900: #18181b;
+  --color-neutral-950: #09090b;
+
+  /* ------------------------------------------------------------------------
+     Portfolio Background Colors
+     ------------------------------------------------------------------------ */
+
+  --color-background-900: #020617;
+  --color-background-950: #030712;
+  --color-surface-900: #0f172a;
+  --color-surface-800: #111827;
+  --color-surface-700: #1f2937;
+
+  /* ------------------------------------------------------------------------
+     Legacy Compatibility
+     ------------------------------------------------------------------------ */
+
+  --color-black: #000000;
+  --color-black-100: #000319;
+  --color-black-200: rgba(17, 25, 40, 0.75);
+  --color-black-300: rgba(255, 255, 255, 0.125);
+
+  --color-white: #ffffff;
+  --color-white-100: #bec1dd;
+  --color-white-200: #c1c2d3;
+
+  --color-blue-100: #e4ecff;
+
+  --color-purple: #cbacf9;
+
+  /* ------------------------------------------------------------------------
+     Semantic Brand Aliases
+     ------------------------------------------------------------------------ */
+
+  --color-brand: var(--color-brand-500);
+  --color-primary: var(--color-primary-600);
+  --color-success: var(--color-success-500);
+  --color-warning: var(--color-warning-500);
+  --color-danger: var(--color-danger-500);
+}
+/* ==========================================================================
+   SEMANTIC DESIGN TOKENS
+   ========================================================================== */
+
+@theme {
+  /* ------------------------------------------------------------------------
+     Application Backgrounds
+     ------------------------------------------------------------------------ */
+
+  --color-app: var(--color-background-950);
+
+  --color-app-secondary: var(--color-background-900);
+
+  --color-surface: var(--color-surface-900);
+
+  --color-surface-secondary: var(--color-surface-800);
+
+  --color-surface-tertiary: var(--color-surface-700);
+
+  /* ------------------------------------------------------------------------
+     Card Backgrounds
+     ------------------------------------------------------------------------ */
+
+  --color-card: rgb(15 23 42 / 0.75);
+
+  --color-card-hover: rgb(17 24 39 / 0.82);
+
+  --color-card-solid: rgb(15 23 42);
+
+  --color-card-muted: rgb(15 23 42 / 0.55);
+
+  --color-card-glass: rgb(255 255 255 / 0.04);
+
+  /* ------------------------------------------------------------------------
+     Glass Effects
+     ------------------------------------------------------------------------ */
+
+  --color-glass: rgb(255 255 255 / 0.05);
+
+  --color-glass-hover: rgb(255 255 255 / 0.08);
+
+  --color-glass-strong: rgb(255 255 255 / 0.12);
+
+  --color-glass-border: rgb(255 255 255 / 0.08);
+
+  --color-glass-border-hover: rgb(255 255 255 / 0.16);
+
+  /* ------------------------------------------------------------------------
+     Foreground
+     ------------------------------------------------------------------------ */
+
+  --color-foreground: var(--color-neutral-50);
+
+  --color-foreground-secondary: var(--color-neutral-200);
+
+  --color-foreground-muted: var(--color-neutral-400);
+
+  --color-foreground-disabled: var(--color-neutral-600);
+
+  --color-foreground-inverse: var(--color-neutral-950);
+
+  /* ------------------------------------------------------------------------
+     Borders
+     ------------------------------------------------------------------------ */
+
+  --color-border: rgb(255 255 255 / 0.08);
+
+  --color-border-secondary: rgb(255 255 255 / 0.05);
+
+  --color-border-hover: rgb(255 255 255 / 0.18);
+
+  --color-border-focus: var(--color-brand-500);
+
+  /* ------------------------------------------------------------------------
+     Interactive
+     ------------------------------------------------------------------------ */
+
+  --color-link: var(--color-brand-400);
+
+  --color-link-hover: var(--color-brand-300);
+
+  --color-ring: var(--color-brand-500);
+
+  --color-selection: var(--color-brand-500);
+
+  /* ------------------------------------------------------------------------
+     Buttons
+     ------------------------------------------------------------------------ */
+
+  --color-button-primary: var(--color-brand-500);
+
+  --color-button-primary-hover: var(--color-brand-400);
+
+  --color-button-secondary: rgb(255 255 255 / 0.05);
+
+  --color-button-secondary-hover: rgb(255 255 255 / 0.08);
+
+  --color-button-outline: rgb(255 255 255 / 0.08);
+
+  /* ------------------------------------------------------------------------
+     Status
+     ------------------------------------------------------------------------ */
+
+  --color-success-bg: rgb(16 185 129 / 0.12);
+
+  --color-warning-bg: rgb(245 158 11 / 0.12);
+
+  --color-danger-bg: rgb(239 68 68 / 0.12);
+
+  --color-info-bg: rgb(6 182 212 / 0.12);
+
+  /* ------------------------------------------------------------------------
+     Overlays
+     ------------------------------------------------------------------------ */
+
+  --color-overlay: rgb(2 6 23 / 0.75);
+
+  --color-overlay-strong: rgb(2 6 23 / 0.9);
+
+  --color-overlay-light: rgb(255 255 255 / 0.04);
+
+  /* ------------------------------------------------------------------------
+     Scrollbars
+     ------------------------------------------------------------------------ */
+
+  --color-scrollbar-thumb: rgb(255 255 255 / 0.15);
+
+  --color-scrollbar-thumb-hover: rgb(255 255 255 / 0.25);
+
+  --color-scrollbar-track: transparent;
+
+  /* ------------------------------------------------------------------------
+     Hero Gradient
+     ------------------------------------------------------------------------ */
+
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--color-brand-500),
+    var(--color-primary-500)
+  );
+
+  --gradient-secondary: linear-gradient(
+    135deg,
+    var(--color-primary-600),
+    var(--color-purple-500)
+  );
+
+  --gradient-surface: linear-gradient(
+    180deg,
+    rgb(255 255 255 / 0.05),
+    rgb(255 255 255 / 0.02)
+  );
+
+  --gradient-card: linear-gradient(
+    180deg,
+    rgb(255 255 255 / 0.08),
+    rgb(255 255 255 / 0.03)
+  );
+
+  --gradient-border: linear-gradient(
+    180deg,
+    rgb(255 255 255 / 0.16),
+    rgb(255 255 255 / 0.04)
+  );
+
+  /* ------------------------------------------------------------------------
+     Shadows
+     ------------------------------------------------------------------------ */
+
+  --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.25);
+
+  --shadow-sm: 0 2px 6px rgb(0 0 0 / 0.25);
+
+  --shadow-md: 0 10px 30px rgb(0 0 0 / 0.28);
+
+  --shadow-lg: 0 18px 45px rgb(0 0 0 / 0.35);
+
+  --shadow-xl: 0 24px 60px rgb(0 0 0 / 0.45);
+
+  --shadow-glow: 0 0 45px rgb(6 182 212 / 0.18);
+
+  --shadow-glow-lg: 0 0 80px rgb(6 182 212 / 0.25);
+
+  --shadow-purple: 0 0 60px rgb(168 85 247 / 0.18);
+}
+/* ==========================================================================
+   DESIGN FOUNDATION TOKENS
+   ========================================================================== */
+
+@theme {
+  /* ------------------------------------------------------------------------
+     Border Radius
+     ------------------------------------------------------------------------ */
+
+  --radius-none: 0;
+
+  --radius-xs: 0.25rem;
+
+  --radius-sm: 0.375rem;
+
+  --radius-md: 0.5rem;
+
+  --radius-lg: 0.75rem;
+
+  --radius-xl: 1rem;
+
+  --radius-2xl: 1.25rem;
+
+  --radius-3xl: 1.5rem;
+
+  --radius-4xl: 2rem;
+
+  --radius-full: 9999px;
+
+  /* ------------------------------------------------------------------------
+     Fluid Spacing
+     ------------------------------------------------------------------------ */
+
+  --space-0: 0;
+
+  --space-1: 0.25rem;
+
+  --space-2: 0.5rem;
+
+  --space-3: 0.75rem;
+
+  --space-4: 1rem;
+
+  --space-5: 1.25rem;
+
+  --space-6: 1.5rem;
+
+  --space-8: 2rem;
+
+  --space-10: 2.5rem;
+
+  --space-12: 3rem;
+
+  --space-14: 3.5rem;
+
+  --space-16: 4rem;
+
+  --space-20: 5rem;
+
+  --space-24: 6rem;
+
+  --space-28: 7rem;
+
+  --space-32: 8rem;
+
+  --space-40: 10rem;
+
+  --space-48: 12rem;
+
+  --space-section-y: clamp(5rem, 8vw, 8rem);
+
+  --space-container-x: clamp(1.25rem, 3vw, 4rem);
+
+  /* ------------------------------------------------------------------------
+     Layout Widths
+     ------------------------------------------------------------------------ */
+
+  --container-xs: 480px;
+
+  --container-sm: 640px;
+
+  --container-md: 768px;
+
+  --container-lg: 1024px;
+
+  --container-xl: 1280px;
+
+  --container-2xl: 1440px;
+
+  --container-3xl: 1600px;
+
+  --container-max: 1700px;
+
+  /* ------------------------------------------------------------------------
+     Component Heights
+     ------------------------------------------------------------------------ */
+
+  --header-height: 5rem;
+
+  --footer-height: 5rem;
+
+  --hero-min-height: 100svh;
+
+  /* ------------------------------------------------------------------------
+     Blur Scale
+     ------------------------------------------------------------------------ */
+
+  --blur-xs: 2px;
+
+  --blur-sm: 4px;
+
+  --blur-md: 8px;
+
+  --blur-lg: 16px;
+
+  --blur-xl: 24px;
+
+  --blur-2xl: 40px;
+
+  --blur-3xl: 64px;
+
+  /* ------------------------------------------------------------------------
+     Opacity
+     ------------------------------------------------------------------------ */
+
+  --opacity-disabled: 0.45;
+
+  --opacity-muted: 0.7;
+
+  --opacity-overlay: 0.9;
+
+  --opacity-glass: 0.06;
+
+  /* ------------------------------------------------------------------------
+     Z Index
+     ------------------------------------------------------------------------ */
+
+  --z-base: 1;
+
+  --z-dropdown: 1000;
+
+  --z-sticky: 1020;
+
+  --z-fixed: 1030;
+
+  --z-overlay: 1040;
+
+  --z-modal: 1050;
+
+  --z-popover: 1060;
+
+  --z-tooltip: 1070;
+
+  --z-toast: 1080;
+
+  --z-max: 9999;
+
+  /* ------------------------------------------------------------------------
+     Transition Duration
+     ------------------------------------------------------------------------ */
+
+  --duration-fast: 150ms;
+
+  --duration-normal: 250ms;
+
+  --duration-slow: 350ms;
+
+  --duration-extra-slow: 600ms;
+
+  /* ------------------------------------------------------------------------
+     Timing Functions
+     ------------------------------------------------------------------------ */
+
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --ease-emphasized: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --ease-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ------------------------------------------------------------------------
+     Shadow Aliases
+     ------------------------------------------------------------------------ */
+
+  --shadow-card: var(--shadow-md);
+
+  --shadow-floating: var(--shadow-lg);
+
+  --shadow-modal: var(--shadow-xl);
+
+  --shadow-glass: var(--shadow-glow);
+
+  /* ------------------------------------------------------------------------
+     Glass
+     ------------------------------------------------------------------------ */
+
+  --glass-background: rgb(255 255 255 / 0.04);
+
+  --glass-background-hover: rgb(255 255 255 / 0.08);
+
+  --glass-border: rgb(255 255 255 / 0.08);
+
+  --glass-border-hover: rgb(255 255 255 / 0.16);
+
+  /* ------------------------------------------------------------------------
+     Backdrop Blur
+     ------------------------------------------------------------------------ */
+
+  --glass-blur: 24px;
+
+  --glass-blur-lg: 36px;
+
+  --glass-blur-xl: 48px;
+
+  /* ------------------------------------------------------------------------
+     Grid
+     ------------------------------------------------------------------------ */
+
+  --grid-gap: clamp(1rem, 2vw, 2rem);
+
+  --section-gap: clamp(4rem, 8vw, 8rem);
+
+  /* ------------------------------------------------------------------------
+     Focus
+     ------------------------------------------------------------------------ */
+
+  --focus-ring-width: 2px;
+
+  --focus-ring-offset: 2px;
+
+  /* ------------------------------------------------------------------------
+     Misc
+     ------------------------------------------------------------------------ */
+
+  --max-reading-width: 72ch;
+
+  --hero-content-width: 900px;
+
+  --animation-duration: 40s;
+
+  --animation-direction: forwards;
+}
+/* ==========================================================================
+   TYPOGRAPHY TOKENS
+   ========================================================================== */
+
+@theme {
+  /* ------------------------------------------------------------------------
+     Font Families
+     ------------------------------------------------------------------------ */
+
+  --font-sans:
+    var(--font-geist-sans), Inter, "SF Pro Display", system-ui, sans-serif;
+
+  --font-mono:
+    var(--font-geist-mono), "JetBrains Mono", "Fira Code", Consolas, monospace;
+
+  --font-display: var(--font-geist-sans), Inter, sans-serif;
+
+  /* ------------------------------------------------------------------------
+     Font Sizes
+     ------------------------------------------------------------------------ */
+
+  --text-2xs: 0.625rem; /* 10px */
+
+  --text-xs: 0.75rem; /* 12px */
+
+  --text-sm: 0.875rem; /* 14px */
+
+  --text-base: 1rem; /* 16px */
+
+  --text-lg: 1.125rem; /* 18px */
+
+  --text-xl: 1.25rem; /* 20px */
+
+  --text-2xl: 1.5rem; /* 24px */
+
+  --text-3xl: 1.875rem; /* 30px */
+
+  --text-4xl: 2.25rem; /* 36px */
+
+  --text-5xl: 3rem; /* 48px */
+
+  --text-6xl: 3.75rem; /* 60px */
+
+  --text-7xl: 4.5rem; /* 72px */
+
+  --text-8xl: 6rem; /* 96px */
+
+  --text-9xl: 8rem; /* 128px */
+
+  /* ------------------------------------------------------------------------
+     Fluid Headings
+     ------------------------------------------------------------------------ */
+
+  --text-display-xs: clamp(2rem, 5vw, 2.75rem);
+
+  --text-display-sm: clamp(2.5rem, 6vw, 3.5rem);
+
+  --text-display-md: clamp(3rem, 7vw, 4.5rem);
+
+  --text-display-lg: clamp(3.75rem, 8vw, 5.75rem);
+
+  --text-display-xl: clamp(4.5rem, 9vw, 7rem);
+
+  /* ------------------------------------------------------------------------
+     Line Heights
+     ------------------------------------------------------------------------ */
+
+  --leading-none: 1;
+
+  --leading-tight: 1.15;
+
+  --leading-snug: 1.3;
+
+  --leading-normal: 1.5;
+
+  --leading-relaxed: 1.7;
+
+  --leading-loose: 2;
+
+  /* ------------------------------------------------------------------------
+     Letter Spacing
+     ------------------------------------------------------------------------ */
+
+  --tracking-tighter: -0.05em;
+
+  --tracking-tight: -0.025em;
+
+  --tracking-normal: 0;
+
+  --tracking-wide: 0.025em;
+
+  --tracking-wider: 0.05em;
+
+  --tracking-widest: 0.12em;
+
+  /* ------------------------------------------------------------------------
+     Font Weights
+     ------------------------------------------------------------------------ */
+
+  --font-thin: 100;
+
+  --font-extralight: 200;
+
+  --font-light: 300;
+
+  --font-normal: 400;
+
+  --font-medium: 500;
+
+  --font-semibold: 600;
+
+  --font-bold: 700;
+
+  --font-extrabold: 800;
+
+  --font-black: 900;
+
+  /* ------------------------------------------------------------------------
+     Reading Width
+     ------------------------------------------------------------------------ */
+
+  --measure-xs: 45ch;
+
+  --measure-sm: 60ch;
+
+  --measure-md: 72ch;
+
+  --measure-lg: 85ch;
+
+  /* ------------------------------------------------------------------------
+     Hero
+     ------------------------------------------------------------------------ */
+
+  --hero-title-size: clamp(3.5rem, 9vw, 7rem);
+
+  --hero-subtitle-size: clamp(1.125rem, 2vw, 1.5rem);
+
+  /* ------------------------------------------------------------------------
+     Section
+     ------------------------------------------------------------------------ */
+
+  --section-title-size: clamp(2.25rem, 5vw, 4rem);
+
+  --section-subtitle-size: clamp(1rem, 1.5vw, 1.25rem);
+
+  /* ------------------------------------------------------------------------
+     Card
+     ------------------------------------------------------------------------ */
+
+  --card-title-size: 1.125rem;
+
+  --card-description-size: 0.95rem;
+
+  /* ------------------------------------------------------------------------
+     Navigation
+     ------------------------------------------------------------------------ */
+
+  --nav-size: 0.95rem;
+
+  --button-size: 0.95rem;
+
+  /* ------------------------------------------------------------------------
+     Labels
+     ------------------------------------------------------------------------ */
+
+  --label-size: 0.75rem;
+
+  --caption-size: 0.8125rem;
+
+  --overline-size: 0.6875rem;
+
+  /* ------------------------------------------------------------------------
+     Code
+     ------------------------------------------------------------------------ */
+
+  --code-size: 0.875rem;
+
+  --code-line-height: 1.75;
+
+  /* ------------------------------------------------------------------------
+     Icon Sizes
+     ------------------------------------------------------------------------ */
+
+  --icon-xs: 0.875rem;
+
+  --icon-sm: 1rem;
+
+  --icon-md: 1.25rem;
+
+  --icon-lg: 1.5rem;
+
+  --icon-xl: 2rem;
+
+  --icon-2xl: 2.5rem;
+
+  /* ------------------------------------------------------------------------
+     Avatar Sizes
+     ------------------------------------------------------------------------ */
+
+  --avatar-xs: 2rem;
+
+  --avatar-sm: 2.5rem;
+
+  --avatar-md: 3rem;
+
+  --avatar-lg: 4rem;
+
+  --avatar-xl: 5rem;
+
+  --avatar-2xl: 7rem;
+}
+/* ==========================================================================
+   ANIMATION TOKENS
+   ========================================================================== */
+
+@theme {
+  /* ------------------------------------------------------------------------
+     Duration
+     ------------------------------------------------------------------------ */
+
+  --duration-instant: 0ms;
+
+  --duration-fastest: 100ms;
+
+  --duration-faster: 150ms;
+
+  --duration-fast: 200ms;
+
+  --duration-normal: 300ms;
+
+  --duration-slow: 500ms;
+
+  --duration-slower: 700ms;
+
+  --duration-slowest: 1000ms;
+
+  /* ------------------------------------------------------------------------
+     Easing
+     ------------------------------------------------------------------------ */
+
+  --ease-linear: linear;
+
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --ease-emphasized: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --ease-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ------------------------------------------------------------------------
+     Accordion
+     ------------------------------------------------------------------------ */
+
+  --animate-accordion-down: accordion-down 200ms var(--ease-out);
+
+  --animate-accordion-up: accordion-up 200ms var(--ease-out);
+
+  /* ------------------------------------------------------------------------
+     Fade
+     ------------------------------------------------------------------------ */
+
+  --animate-fade-in: fade-in 500ms var(--ease-emphasized);
+
+  --animate-fade-out: fade-out 300ms var(--ease-default);
+
+  /* ------------------------------------------------------------------------
+     Scale
+     ------------------------------------------------------------------------ */
+
+  --animate-scale-in: scale-in 400ms var(--ease-emphasized);
+
+  --animate-scale-out: scale-out 250ms var(--ease-default);
+
+  /* ------------------------------------------------------------------------
+     Slide
+     ------------------------------------------------------------------------ */
+
+  --animate-slide-up: slide-up 500ms var(--ease-emphasized);
+
+  --animate-slide-down: slide-down 400ms var(--ease-emphasized);
+
+  --animate-slide-left: slide-left 400ms var(--ease-emphasized);
+
+  --animate-slide-right: slide-right 400ms var(--ease-emphasized);
+
+  /* ------------------------------------------------------------------------
+     Hero
+     ------------------------------------------------------------------------ */
+
+  --animate-spotlight: spotlight 2s ease 0.5s forwards;
+
+  --animate-text-reveal: text-reveal 900ms var(--ease-emphasized);
+
+  /* ------------------------------------------------------------------------
+     Floating
+     ------------------------------------------------------------------------ */
+
+  --animate-float: float 6s ease-in-out infinite;
+
+  --animate-float-slow: float 10s ease-in-out infinite;
+
+  --animate-float-fast: float 3s ease-in-out infinite;
+
+  /* ------------------------------------------------------------------------
+     Background
+     ------------------------------------------------------------------------ */
+
+  --animate-gradient: gradient 12s ease infinite;
+
+  --animate-aurora: aurora 20s linear infinite;
+
+  --animate-blob: blob 14s ease infinite;
+
+  /* ------------------------------------------------------------------------
+     Glow
+     ------------------------------------------------------------------------ */
+
+  --animate-pulse-glow: pulse-glow 3s ease-in-out infinite;
+
+  --animate-glow: glow 2s ease-in-out infinite;
+
+  /* ------------------------------------------------------------------------
+     Shimmer
+     ------------------------------------------------------------------------ */
+
+  --animate-shimmer: shimmer 2.5s linear infinite;
+
+  /* ------------------------------------------------------------------------
+     Marquee
+     ------------------------------------------------------------------------ */
+
+  --animate-marquee: marquee 30s linear infinite;
+
+  --animate-marquee-reverse: marquee-reverse 30s linear infinite;
+
+  /* ------------------------------------------------------------------------
+     Scroll
+     ------------------------------------------------------------------------ */
+
+  --animate-scroll: scroll var(--animation-duration, 40s)
+    var(--animation-direction, forwards) linear infinite;
+
+  /* ------------------------------------------------------------------------
+     Rotation
+     ------------------------------------------------------------------------ */
+
+  --animate-spin-slow: spin 8s linear infinite;
+
+  --animate-spin-slower: spin 18s linear infinite;
+
+  /* ------------------------------------------------------------------------
+     Border
+     ------------------------------------------------------------------------ */
+
+  --animate-border: border-beam 8s linear infinite;
+
+  /* ------------------------------------------------------------------------
+     Cursor
+     ------------------------------------------------------------------------ */
+
+  --animate-caret: caret 1s steps(1) infinite;
+
+  /* ------------------------------------------------------------------------
+     Mouse
+     ------------------------------------------------------------------------ */
+
+  --animate-bounce-soft: bounce-soft 2s ease-in-out infinite;
+
+  /* ------------------------------------------------------------------------
+     Hover
+     ------------------------------------------------------------------------ */
+
+  --animate-hover-lift: hover-lift 300ms var(--ease-smooth);
+
+  /* ------------------------------------------------------------------------
+     Cards
+     ------------------------------------------------------------------------ */
+
+  --animate-card-enter: card-enter 500ms var(--ease-emphasized);
+
+  --animate-card-hover: card-hover 250ms var(--ease-default);
+
+  /* ------------------------------------------------------------------------
+     Buttons
+     ------------------------------------------------------------------------ */
+
+  --animate-button: button-pop 200ms var(--ease-smooth);
+
+  /* ------------------------------------------------------------------------
+     Navigation
+     ------------------------------------------------------------------------ */
+
+  --animate-navbar: navbar-enter 600ms var(--ease-emphasized);
+
+  /* ------------------------------------------------------------------------
+     Modal
+     ------------------------------------------------------------------------ */
+
+  --animate-modal: modal-enter 300ms var(--ease-emphasized);
+
+  /* ------------------------------------------------------------------------
+     Tooltip
+     ------------------------------------------------------------------------ */
+
+  --animate-tooltip: tooltip-enter 150ms var(--ease-out);
+
+  /* ------------------------------------------------------------------------
+     Drawer
+     ------------------------------------------------------------------------ */
+
+  --animate-drawer: drawer-enter 350ms var(--ease-emphasized);
+}
+/* ==========================================================================
+   KEYFRAMES
+   PART 1B.2.2.1 — CORE UI ANIMATIONS
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Accordion
+--------------------------------------------------------------------------- */
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+
+  to {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Fade
+--------------------------------------------------------------------------- */
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Scale
+--------------------------------------------------------------------------- */
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scale-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Slide
+--------------------------------------------------------------------------- */
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Rotate
+--------------------------------------------------------------------------- */
+
+@keyframes rotate-in {
+  from {
+    opacity: 0;
+    transform: rotate(-10deg) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+@keyframes rotate-out {
+  from {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: rotate(8deg) scale(0.95);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Pulse
+--------------------------------------------------------------------------- */
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.75;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.6;
+
+    box-shadow: 0 0 0 rgb(6 182 212 / 0);
+  }
+
+  50% {
+    opacity: 1;
+
+    box-shadow:
+      0 0 20px rgb(6 182 212 / 0.35),
+      0 0 40px rgb(6 182 212 / 0.2);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Glow
+--------------------------------------------------------------------------- */
+
+@keyframes glow {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+
+  50% {
+    filter: brightness(1.15) drop-shadow(0 0 16px rgb(6 182 212 / 0.35));
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Hover Lift
+--------------------------------------------------------------------------- */
+
+@keyframes hover-lift {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-6px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Card Enter
+--------------------------------------------------------------------------- */
+
+@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Button Pop
+--------------------------------------------------------------------------- */
+
+@keyframes button-pop {
+  0% {
+    transform: scale(0.96);
+  }
+
+  60% {
+    transform: scale(1.04);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Navbar Enter
+--------------------------------------------------------------------------- */
+
+@keyframes navbar-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Modal Enter
+--------------------------------------------------------------------------- */
+
+@keyframes modal-enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Drawer Enter
+--------------------------------------------------------------------------- */
+
+@keyframes drawer-enter {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Tooltip Enter
+--------------------------------------------------------------------------- */
+
+@keyframes tooltip-enter {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Soft Bounce
+--------------------------------------------------------------------------- */
+
+@keyframes bounce-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  25% {
+    transform: translateY(-6px);
+  }
+
+  50% {
+    transform: translateY(0);
+  }
+
+  75% {
+    transform: translateY(-3px);
+  }
+}
+/* ==========================================================================
+   KEYFRAMES
+   PART 1B.2.2.2 — PREMIUM PORTFOLIO ANIMATIONS
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Spotlight
+--------------------------------------------------------------------------- */
+
+@keyframes spotlight {
+  0% {
+    opacity: 0;
+    transform: translate(-72%, -62%) scale(0.45);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -40%) scale(1);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Text Reveal
+--------------------------------------------------------------------------- */
+
+@keyframes text-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(32px);
+    filter: blur(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Float
+--------------------------------------------------------------------------- */
+
+@keyframes float {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  25% {
+    transform: translate3d(0, -10px, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -18px, 0);
+  }
+
+  75% {
+    transform: translate3d(0, -8px, 0);
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Gradient Shift
+--------------------------------------------------------------------------- */
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Shimmer
+--------------------------------------------------------------------------- */
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Aurora
+--------------------------------------------------------------------------- */
+
+@keyframes aurora {
+  0% {
+    transform: rotate(0deg) translateX(-5%) translateY(0);
+  }
+
+  25% {
+    transform: rotate(90deg) translateX(8%) translateY(-4%);
+  }
+
+  50% {
+    transform: rotate(180deg) translateX(0) translateY(6%);
+  }
+
+  75% {
+    transform: rotate(270deg) translateX(-8%) translateY(-4%);
+  }
+
+  100% {
+    transform: rotate(360deg) translateX(-5%) translateY(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Blob
+--------------------------------------------------------------------------- */
+
+@keyframes blob {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(40px, -30px) scale(1.08);
+  }
+
+  66% {
+    transform: translate(-25px, 25px) scale(0.94);
+  }
+
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Infinite Scroll
+--------------------------------------------------------------------------- */
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - 0.5rem));
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Marquee
+--------------------------------------------------------------------------- */
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-reverse {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Border Beam
+--------------------------------------------------------------------------- */
+
+@keyframes border-beam {
+  0% {
+    offset-distance: 0%;
+  }
+
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Orbit
+--------------------------------------------------------------------------- */
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(120px) rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg) translateX(120px) rotate(-360deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Meteor
+--------------------------------------------------------------------------- */
+
+@keyframes meteor {
+  0% {
+    opacity: 0;
+    transform: translateY(-120px) translateX(-120px) rotate(215deg);
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(700px) translateX(700px) rotate(215deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Caret
+--------------------------------------------------------------------------- */
+
+@keyframes caret {
+  0%,
+  49% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Wave
+--------------------------------------------------------------------------- */
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  15% {
+    transform: rotate(14deg);
+  }
+
+  30% {
+    transform: rotate(-8deg);
+  }
+
+  45% {
+    transform: rotate(14deg);
+  }
+
+  60% {
+    transform: rotate(-4deg);
+  }
+
+  75% {
+    transform: rotate(10deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Background Movement
+--------------------------------------------------------------------------- */
+
+@keyframes move-horizontal {
+  0% {
+    transform: translateX(-40%) translateY(-10%);
+  }
+
+  50% {
+    transform: translateX(40%) translateY(10%);
+  }
+
+  100% {
+    transform: translateX(-40%) translateY(-10%);
+  }
+}
+
+@keyframes move-vertical {
+  0% {
+    transform: translateY(-40%);
+  }
+
+  50% {
+    transform: translateY(40%);
+  }
+
+  100% {
+    transform: translateY(-40%);
+  }
+}
+
+@keyframes move-circle {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Background Pulse
+--------------------------------------------------------------------------- */
+
+@keyframes background-pulse {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.45;
+    transform: scale(1.08);
+  }
+}
+/* ==========================================================================
+   PART 2A
+   CSS RESET & BASE STYLES
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Box Sizing
+--------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------------------
+   Default Border
+--------------------------------------------------------------------------- */
+
+* {
+  border-color: var(--color-border);
+}
+
+/* --------------------------------------------------------------------------
+   Root
+--------------------------------------------------------------------------- */
+
+html {
+  scroll-behavior: smooth;
+
+  -webkit-text-size-adjust: 100%;
+
+  text-size-adjust: 100%;
+
+  hanging-punctuation: first last;
+}
+
+/* --------------------------------------------------------------------------
+   Body
+--------------------------------------------------------------------------- */
+
+body {
+  min-height: 100svh;
+
+  overflow-x: hidden;
+
+  background: var(--color-app);
+
+  color: var(--color-foreground);
+
+  font-family: var(--font-sans);
+
+  font-size: var(--text-base);
+
+  font-weight: var(--font-normal);
+
+  line-height: var(--leading-normal);
+
+  text-rendering: optimizeLegibility;
+
+  font-feature-settings:
+    "rlig" 1,
+    "calt" 1;
+
+  font-synthesis-weight: none;
+
+  font-synthesis-style: none;
+
+  font-synthesis-small-caps: none;
+
+  -webkit-font-smoothing: antialiased;
+
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --------------------------------------------------------------------------
+   Typography
+--------------------------------------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+
+  color: inherit;
+
+  font-family: var(--font-display);
+
+  font-weight: var(--font-bold);
+
+  line-height: var(--leading-tight);
+
+  letter-spacing: var(--tracking-tight);
+
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+
+  max-width: var(--measure-md);
+
+  color: inherit;
+
+  text-wrap: pretty;
+}
+
+small {
+  font-size: var(--text-sm);
+}
+
+strong {
+  font-weight: var(--font-semibold);
+}
+
+em {
+  font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   Lists
+--------------------------------------------------------------------------- */
+
+ul,
+ol {
+  margin: 0;
+
+  padding: 0;
+
+  list-style: none;
+}
+
+/* --------------------------------------------------------------------------
+   Links
+--------------------------------------------------------------------------- */
+
+a {
+  color: inherit;
+
+  text-decoration: none;
+
+  transition:
+    color var(--duration-normal) var(--ease-default),
+    opacity var(--duration-normal) var(--ease-default);
+}
+
+a:hover {
+  color: var(--color-link-hover);
+}
+
+/* --------------------------------------------------------------------------
+   Images
+--------------------------------------------------------------------------- */
+
+img,
+picture,
+svg,
+video,
+canvas {
+  display: block;
+
+  max-width: 100%;
+
+  height: auto;
+}
+
+/* --------------------------------------------------------------------------
+   SVG
+--------------------------------------------------------------------------- */
+
+svg {
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Form Elements
+--------------------------------------------------------------------------- */
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+
+  color: inherit;
+
+  background: transparent;
+}
+
+button {
+  cursor: pointer;
+
+  border: none;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input,
+textarea,
+select {
+  outline: none;
+}
+
+/* --------------------------------------------------------------------------
+   Tables
+--------------------------------------------------------------------------- */
+
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  border-spacing: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Code
+--------------------------------------------------------------------------- */
+
+code,
+pre,
+kbd,
+samp {
+  font-family: var(--font-mono);
+}
+
+pre {
+  overflow-x: auto;
+}
+
+/* --------------------------------------------------------------------------
+   Horizontal Rule
+--------------------------------------------------------------------------- */
+
+hr {
+  height: 1px;
+
+  margin: 0;
+
+  border: 0;
+
+  background: var(--color-border);
+}
+
+/* --------------------------------------------------------------------------
+   Hidden
+--------------------------------------------------------------------------- */
+
+[hidden] {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   Selection
+--------------------------------------------------------------------------- */
+
+::selection {
+  background: var(--color-selection);
+
+  color: var(--color-neutral-0);
+}
+
+/* --------------------------------------------------------------------------
+   Placeholder
+--------------------------------------------------------------------------- */
+
+::placeholder {
+  color: var(--color-foreground-muted);
+
+  opacity: 1;
+}
+/* ==========================================================================
+   PART 2B
+   ACCESSIBILITY • SCROLLBARS • UX
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Focus Visible
+--------------------------------------------------------------------------- */
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-ring);
+
+  outline-offset: var(--focus-ring-offset);
+
+  border-radius: var(--radius-md);
+
+  transition:
+    outline-offset var(--duration-fast) var(--ease-default),
+    outline-color var(--duration-fast) var(--ease-default);
+}
+
+/* --------------------------------------------------------------------------
+   Interactive Elements
+--------------------------------------------------------------------------- */
+
+button,
+a,
+input,
+textarea,
+select,
+summary,
+[role="button"] {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:disabled,
+input:disabled,
+textarea:disabled,
+select:disabled {
+  cursor: not-allowed;
+
+  opacity: var(--opacity-disabled);
+}
+
+/* --------------------------------------------------------------------------
+   Cursor
+--------------------------------------------------------------------------- */
+
+button:not(:disabled),
+[role="button"]:not([aria-disabled="true"]) {
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------
+   Autofill
+--------------------------------------------------------------------------- */
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-text-fill-color: var(--color-foreground);
+
+  transition: background-color 99999s ease-in-out 0s;
+
+  box-shadow: 0 0 0 1000px var(--color-app) inset;
+}
+
+/* --------------------------------------------------------------------------
+   Search
+--------------------------------------------------------------------------- */
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Number Input
+--------------------------------------------------------------------------- */
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  margin: 0;
+
+  appearance: none;
+}
+
+input[type="number"] {
+  appearance: textfield;
+}
+
+/* --------------------------------------------------------------------------
+   Placeholder
+--------------------------------------------------------------------------- */
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-foreground-muted);
+
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Textarea
+--------------------------------------------------------------------------- */
+
+textarea {
+  min-height: 7rem;
+}
+
+/* --------------------------------------------------------------------------
+   Selection
+--------------------------------------------------------------------------- */
+
+::selection {
+  color: var(--color-neutral-0);
+
+  background: var(--color-brand);
+}
+
+/* --------------------------------------------------------------------------
+   Scrollbar
+--------------------------------------------------------------------------- */
+
+html {
+  scrollbar-width: thin;
+
+  scrollbar-color: var(--color-scrollbar-thumb) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+
+  border-radius: var(--radius-full);
+
+  background: var(--color-scrollbar-thumb);
+
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-scrollbar-thumb-hover);
+
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* --------------------------------------------------------------------------
+   Reduced Motion
+--------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   High Contrast
+--------------------------------------------------------------------------- */
+
+@media (prefers-contrast: more) {
+  * {
+    box-shadow: none !important;
+  }
+
+  :focus-visible {
+    outline-width: 3px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Screen Reader Only
+--------------------------------------------------------------------------- */
+
+.sr-only {
+  position: absolute;
+
+  width: 1px;
+
+  height: 1px;
+
+  padding: 0;
+
+  margin: -1px;
+
+  overflow: hidden;
+
+  clip: rect(0, 0, 0, 0);
+
+  white-space: nowrap;
+
+  border: 0;
+}
+
+.not-sr-only {
+  position: static;
+
+  width: auto;
+
+  height: auto;
+
+  margin: 0;
+
+  overflow: visible;
+
+  clip: auto;
+
+  white-space: normal;
+}
+
+/* --------------------------------------------------------------------------
+   Drag
+--------------------------------------------------------------------------- */
+
+img,
+svg {
+  user-select: none;
+
+  -webkit-user-drag: none;
+}
+
+/* --------------------------------------------------------------------------
+   Horizontal Overflow
+--------------------------------------------------------------------------- */
+
+body,
+#__next {
+  overflow-x: clip;
+}
+
+/* --------------------------------------------------------------------------
+   Printing
+--------------------------------------------------------------------------- */
+
+@media print {
+  * {
+    background: transparent !important;
+
+    color: black !important;
+
+    box-shadow: none !important;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  img {
+    page-break-inside: avoid;
+  }
+
+  h1,
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
+/* ==========================================================================
+   PART 3A
+   LAYOUT SYSTEM
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Full Width
+--------------------------------------------------------------------------- */
+
+.full-width {
+  width: 100%;
+}
+
+.full-screen {
+  width: 100%;
+
+  min-height: 100svh;
+}
+
+.full-bleed {
+  width: 100vw;
+
+  margin-left: calc(50% - 50vw);
+
+  margin-right: calc(50% - 50vw);
+}
+
+/* --------------------------------------------------------------------------
+   Main Container
+--------------------------------------------------------------------------- */
+
+.container {
+  width: min(calc(100% - 2rem), var(--container-max));
+
+  margin-inline: auto;
+}
+
+@media (min-width: 640px) {
+  .container {
+    width: min(calc(100% - 3rem), var(--container-max));
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    width: min(calc(100% - 5rem), var(--container-max));
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    width: min(calc(100% - 8rem), var(--container-max));
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Narrow Containers
+--------------------------------------------------------------------------- */
+
+.container-sm {
+  width: min(calc(100% - 2rem), 900px);
+
+  margin-inline: auto;
+}
+
+.container-md {
+  width: min(calc(100% - 2rem), 1100px);
+
+  margin-inline: auto;
+}
+
+.container-lg {
+  width: min(calc(100% - 2rem), 1280px);
+
+  margin-inline: auto;
+}
+
+.container-xl {
+  width: min(calc(100% - 2rem), 1440px);
+
+  margin-inline: auto;
+}
+
+/* --------------------------------------------------------------------------
+   Section
+--------------------------------------------------------------------------- */
+
+.section {
+  position: relative;
+
+  width: 100%;
+
+  padding-block: var(--space-section-y);
+}
+
+.section-sm {
+  padding-block: 4rem;
+}
+
+.section-lg {
+  padding-block: 10rem;
+}
+
+.section-xl {
+  padding-block: 12rem;
+}
+
+/* --------------------------------------------------------------------------
+   Content Width
+--------------------------------------------------------------------------- */
+
+.content-width {
+  max-width: var(--measure-md);
+}
+
+.content-width-lg {
+  max-width: var(--measure-lg);
+}
+
+.hero-width {
+  max-width: var(--hero-content-width);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Grid
+--------------------------------------------------------------------------- */
+
+.grid-auto-fit-xs {
+  display: grid;
+
+  gap: var(--grid-gap);
+
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+
+.grid-auto-fit-sm {
+  display: grid;
+
+  gap: var(--grid-gap);
+
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.grid-auto-fit-md {
+  display: grid;
+
+  gap: var(--grid-gap);
+
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.grid-auto-fit-lg {
+  display: grid;
+
+  gap: var(--grid-gap);
+
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+/* --------------------------------------------------------------------------
+   Two Column Layout
+--------------------------------------------------------------------------- */
+
+.two-column {
+  display: grid;
+
+  gap: clamp(2rem, 3vw, 4rem);
+
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .two-column {
+    grid-template-columns:
+      1fr
+      1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Sidebar Layout
+--------------------------------------------------------------------------- */
+
+.sidebar-layout {
+  display: grid;
+
+  gap: clamp(2rem, 4vw, 4rem);
+}
+
+@media (min-width: 1280px) {
+  .sidebar-layout {
+    grid-template-columns:
+      minmax(0, 1fr)
+      360px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Stack
+--------------------------------------------------------------------------- */
+
+.stack-xs > * + * {
+  margin-top: 0.5rem;
+}
+
+.stack-sm > * + * {
+  margin-top: 1rem;
+}
+
+.stack-md > * + * {
+  margin-top: 1.5rem;
+}
+
+.stack-lg > * + * {
+  margin-top: 2rem;
+}
+
+.stack-xl > * + * {
+  margin-top: 3rem;
+}
+
+/* --------------------------------------------------------------------------
+   Cluster
+--------------------------------------------------------------------------- */
+
+.cluster {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 1rem;
+
+  align-items: center;
+}
+
+/* --------------------------------------------------------------------------
+   Center
+--------------------------------------------------------------------------- */
+
+.center {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+.center-column {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   Safe Area
+--------------------------------------------------------------------------- */
+
+.safe-top {
+  padding-top: max(env(safe-area-inset-top), 1rem);
+}
+
+.safe-bottom {
+  padding-bottom: max(env(safe-area-inset-bottom), 1rem);
+}
+
+.safe-left {
+  padding-left: max(env(safe-area-inset-left), 1rem);
+}
+
+.safe-right {
+  padding-right: max(env(safe-area-inset-right), 1rem);
+}
+/* ==========================================================================
+   PART 3B
+   PREMIUM UI UTILITIES
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Glass Morphism
+--------------------------------------------------------------------------- */
+
+.glass {
+  position: relative;
+
+  border: 1px solid var(--glass-border);
+
+  background: var(--glass-background);
+
+  backdrop-filter: blur(var(--glass-blur));
+
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+
+  transition:
+    background var(--duration-normal) var(--ease-default),
+    border-color var(--duration-normal) var(--ease-default),
+    transform var(--duration-normal) var(--ease-default),
+    box-shadow var(--duration-normal) var(--ease-default);
+}
+
+.glass:hover {
+  border-color: var(--glass-border-hover);
+
+  background: var(--glass-background-hover);
+
+  box-shadow: var(--shadow-glow);
+}
+
+.glass-strong {
+  border: 1px solid rgb(255 255 255 / 0.12);
+
+  background: rgb(255 255 255 / 0.08);
+
+  backdrop-filter: blur(var(--glass-blur-lg));
+
+  -webkit-backdrop-filter: blur(var(--glass-blur-lg));
+}
+
+/* --------------------------------------------------------------------------
+   Premium Card
+--------------------------------------------------------------------------- */
+
+.card {
+  position: relative;
+
+  overflow: hidden;
+
+  border-radius: var(--radius-3xl);
+
+  border: 1px solid var(--color-border);
+
+  background: var(--gradient-card);
+
+  backdrop-filter: blur(var(--glass-blur));
+
+  transition:
+    transform var(--duration-normal) var(--ease-smooth),
+    box-shadow var(--duration-normal) var(--ease-default),
+    border-color var(--duration-normal) var(--ease-default);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+
+  border-color: rgb(255 255 255 / 0.18);
+
+  box-shadow: var(--shadow-floating);
+}
+
+.card::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  opacity: 0;
+
+  transition: opacity var(--duration-slow);
+
+  background: radial-gradient(
+    circle at top right,
+    rgb(34 211 238 / 0.15),
+    transparent 55%
+  );
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Interactive Card
+--------------------------------------------------------------------------- */
+
+.interactive-card {
+  transition:
+    transform var(--duration-normal) var(--ease-smooth),
+    border-color var(--duration-normal),
+    background var(--duration-normal),
+    box-shadow var(--duration-normal);
+}
+
+.interactive-card:hover {
+  transform: translateY(-6px) scale(1.01);
+}
+
+/* --------------------------------------------------------------------------
+   Premium Border
+--------------------------------------------------------------------------- */
+
+.border-gradient {
+  position: relative;
+
+  overflow: hidden;
+}
+
+.border-gradient::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  padding: 1px;
+
+  border-radius: inherit;
+
+  background: linear-gradient(
+    135deg,
+    rgb(255 255 255 / 0.18),
+    transparent,
+    rgb(34 211 238 / 0.22)
+  );
+
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+
+  mask-composite: exclude;
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+
+  -webkit-mask-composite: xor;
+
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   Gradient Backgrounds
+--------------------------------------------------------------------------- */
+
+.bg-gradient-primary {
+  background: var(--gradient-primary);
+}
+
+.bg-gradient-secondary {
+  background: var(--gradient-secondary);
+}
+
+.bg-gradient-surface {
+  background: var(--gradient-surface);
+}
+
+.bg-gradient-card {
+  background: var(--gradient-card);
+}
+
+/* --------------------------------------------------------------------------
+   Gradient Text
+--------------------------------------------------------------------------- */
+
+.text-gradient {
+  color: transparent;
+
+  background: linear-gradient(90deg, #ffffff, #cbd5e1, #67e8f9);
+
+  background-clip: text;
+
+  -webkit-background-clip: text;
+}
+
+.text-gradient-brand {
+  color: transparent;
+
+  background: linear-gradient(
+    90deg,
+    var(--color-brand-400),
+    var(--color-primary-400)
+  );
+
+  background-clip: text;
+
+  -webkit-background-clip: text;
+}
+
+/* --------------------------------------------------------------------------
+   Glow Effects
+--------------------------------------------------------------------------- */
+
+.glow {
+  box-shadow: var(--shadow-glow);
+}
+
+.glow-lg {
+  box-shadow: var(--shadow-glow-lg);
+}
+
+.glow-purple {
+  box-shadow: var(--shadow-purple);
+}
+
+/* --------------------------------------------------------------------------
+   Blur Background
+--------------------------------------------------------------------------- */
+
+.blur-bg {
+  backdrop-filter: blur(var(--glass-blur));
+
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+}
+
+/* --------------------------------------------------------------------------
+   Aurora
+--------------------------------------------------------------------------- */
+
+.aurora {
+  position: absolute;
+
+  inset: 0;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+.aurora::before,
+.aurora::after {
+  content: "";
+
+  position: absolute;
+
+  width: 600px;
+
+  height: 600px;
+
+  border-radius: 9999px;
+
+  filter: blur(140px);
+
+  animation: aurora 18s linear infinite;
+}
+
+.aurora::before {
+  top: -200px;
+
+  left: -100px;
+
+  background: rgb(34 211 238 / 0.12);
+}
+
+.aurora::after {
+  right: -120px;
+
+  bottom: -200px;
+
+  background: rgb(168 85 247 / 0.1);
+
+  animation-delay: -9s;
+}
+
+/* --------------------------------------------------------------------------
+   Grid Background
+--------------------------------------------------------------------------- */
+
+.bg-grid {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+
+  background-size: 36px 36px;
+}
+
+/* --------------------------------------------------------------------------
+   Dot Background
+--------------------------------------------------------------------------- */
+
+.bg-dot {
+  background-image: radial-gradient(
+    rgb(255 255 255 / 0.12) 1px,
+    transparent 1px
+  );
+
+  background-size: 24px 24px;
+}
+
+/* --------------------------------------------------------------------------
+   Noise Overlay
+--------------------------------------------------------------------------- */
+
+.noise {
+  position: relative;
+}
+
+.noise::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  opacity: 0.04;
+
+  mix-blend-mode: soft-light;
+
+  pointer-events: none;
+
+  background-image: radial-gradient(
+    circle,
+    rgb(255 255 255 / 0.25) 1px,
+    transparent 1px
+  );
+
+  background-size: 8px 8px;
+}
+
+/* --------------------------------------------------------------------------
+   Premium Shadows
+--------------------------------------------------------------------------- */
+
+.shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+.shadow-floating {
+  box-shadow: var(--shadow-floating);
+}
+
+.shadow-modal {
+  box-shadow: var(--shadow-modal);
+}
+
+/* --------------------------------------------------------------------------
+   Hover Lift
+--------------------------------------------------------------------------- */
+
+.hover-lift {
+  transition: transform var(--duration-normal) var(--ease-smooth);
+}
+
+.hover-lift:hover {
+  transform: translateY(-6px);
+}
+
+/* --------------------------------------------------------------------------
+   Hover Scale
+--------------------------------------------------------------------------- */
+
+.hover-scale {
+  transition: transform var(--duration-normal) var(--ease-default);
+}
+
+.hover-scale:hover {
+  transform: scale(1.03);
+}
+
+/* --------------------------------------------------------------------------
+   Smooth Transition
+--------------------------------------------------------------------------- */
+
+.transition-default {
+  transition: all var(--duration-normal) var(--ease-default);
+}
+/* ==========================================================================
+   PART 3C
+   MODERN UTILITY CLASSES
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Hero
+--------------------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  min-height: var(--hero-min-height);
+
+  isolation: isolate;
+}
+
+.hero-content {
+  width: 100%;
+
+  max-width: var(--hero-content-width);
+
+  margin-inline: auto;
+}
+
+.hero-title {
+  font-size: var(--hero-title-size);
+
+  font-weight: var(--font-black);
+
+  line-height: 1;
+
+  letter-spacing: -0.05em;
+
+  text-wrap: balance;
+}
+
+.hero-subtitle {
+  max-width: 65ch;
+
+  margin-top: 1.5rem;
+
+  font-size: var(--hero-subtitle-size);
+
+  line-height: var(--leading-relaxed);
+
+  color: var(--color-foreground-muted);
+
+  text-wrap: pretty;
+}
+
+/* --------------------------------------------------------------------------
+   Section
+--------------------------------------------------------------------------- */
+
+.section-title {
+  font-size: var(--section-title-size);
+
+  font-weight: var(--font-bold);
+
+  line-height: var(--leading-tight);
+
+  letter-spacing: var(--tracking-tight);
+
+  text-wrap: balance;
+}
+
+.section-description {
+  max-width: 70ch;
+
+  margin-top: 1.5rem;
+
+  font-size: var(--section-subtitle-size);
+
+  line-height: var(--leading-relaxed);
+
+  color: var(--color-foreground-muted);
+
+  text-wrap: pretty;
+}
+
+/* --------------------------------------------------------------------------
+   Divider
+--------------------------------------------------------------------------- */
+
+.divider {
+  width: 100%;
+
+  height: 1px;
+
+  background: var(--color-border);
+}
+
+.divider-gradient {
+  width: 100%;
+
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(255 255 255 / 0.15),
+    transparent
+  );
+}
+
+/* --------------------------------------------------------------------------
+   Overflow
+--------------------------------------------------------------------------- */
+
+.overflow-fade {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+.overflow-x-hidden {
+  overflow-x: hidden;
+}
+
+.overflow-y-hidden {
+  overflow-y: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   Aspect Ratio
+--------------------------------------------------------------------------- */
+
+.aspect-square {
+  aspect-ratio: 1;
+}
+
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}
+
+.aspect-card {
+  aspect-ratio: 4 / 5;
+}
+
+/* --------------------------------------------------------------------------
+   Text Helpers
+--------------------------------------------------------------------------- */
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.text-pretty {
+  text-wrap: pretty;
+}
+
+.text-muted {
+  color: var(--color-foreground-muted);
+}
+
+.text-secondary {
+  color: var(--color-foreground-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   Animation Helpers
+--------------------------------------------------------------------------- */
+
+.animate-fade-in {
+  animation: var(--animate-fade-in);
+}
+
+.animate-slide-up {
+  animation: var(--animate-slide-up);
+}
+
+.animate-scale-in {
+  animation: var(--animate-scale-in);
+}
+
+.animate-float {
+  animation: var(--animate-float);
+}
+
+.animate-glow {
+  animation: var(--animate-glow);
+}
+
+.animate-shimmer {
+  animation: var(--animate-shimmer);
+}
+
+.animate-gradient {
+  background-size: 300% 300%;
+
+  animation: var(--animate-gradient);
+}
+
+/* --------------------------------------------------------------------------
+   Hover Helpers
+--------------------------------------------------------------------------- */
+
+.hover-opacity {
+  transition: opacity var(--duration-normal) var(--ease-default);
+}
+
+.hover-opacity:hover {
+  opacity: 0.8;
+}
+
+.hover-brightness {
+  transition: filter var(--duration-normal) var(--ease-default);
+}
+
+.hover-brightness:hover {
+  filter: brightness(1.15);
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Visibility
+--------------------------------------------------------------------------- */
+
+.mobile-only {
+  display: block;
+}
+
+.desktop-only {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .mobile-only {
+    display: none;
+  }
+
+  .desktop-only {
+    display: block;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Loading
+--------------------------------------------------------------------------- */
+
+.loading {
+  cursor: wait;
+
+  pointer-events: none;
+
+  user-select: none;
+}
+
+/* --------------------------------------------------------------------------
+   Disable Interaction
+--------------------------------------------------------------------------- */
+
+.no-pointer {
+  pointer-events: none;
+}
+
+.pointer {
+  pointer-events: auto;
+}
+
+/* --------------------------------------------------------------------------
+   GPU Acceleration
+--------------------------------------------------------------------------- */
+
+.gpu {
+  transform: translateZ(0);
+
+  will-change: transform;
+}
+
+.will-transform {
+  will-change: transform;
+}
+
+.will-opacity {
+  will-change: opacity;
+}
+
+.will-scroll {
+  will-change: scroll-position;
+}
+
+/* --------------------------------------------------------------------------
+   Modern Scroll Snap
+--------------------------------------------------------------------------- */
+
+.snap-x {
+  scroll-snap-type: x mandatory;
+}
+
+.snap-y {
+  scroll-snap-type: y mandatory;
+}
+
+.snap-start {
+  scroll-snap-align: start;
+}
+
+.snap-center {
+  scroll-snap-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   Scroll Margin
+--------------------------------------------------------------------------- */
+
+.scroll-mt-header {
+  scroll-margin-top: calc(var(--header-height) + 2rem);
+}
+
+/* --------------------------------------------------------------------------
+   Isolation
+--------------------------------------------------------------------------- */
+
+.isolate {
+  isolation: isolate;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Images
+--------------------------------------------------------------------------- */
+
+.image-cover {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.image-contain {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: contain;
+}
+
+/* --------------------------------------------------------------------------
+   Utility
+--------------------------------------------------------------------------- */
+
+.rounded-inherit {
+  border-radius: inherit;
+}
+
+.border-default {
+  border: 1px solid var(--color-border);
+}
+
+/* --------------------------------------------------------------------------
+   Print
+--------------------------------------------------------------------------- */
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+}
+
+@media screen {
+  .print-only {
+    display: none !important;
+  }
+}
