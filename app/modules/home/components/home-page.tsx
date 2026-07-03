@@ -6,7 +6,7 @@ import { HeroSection } from "@/app/modules//hero/components/hero-section";
 import { useHomeData } from "../hooks/use-home-data";
 import { FloatingNav } from "@/components/ui/floating-navbar";
 import { NAV_ITEMS } from "@/app/config/navigation";
-import { Grid } from "lucide-react";
+// import { Grid } from "lucide-react";
 import PortfolioSection from "../../portfolio/components/portfolio-section";
 
 import { SkillsSection } from "../../skills/components/skills-section";
@@ -22,7 +22,7 @@ export function HomePage(): React.JSX.Element {
       <PortfolioSection />
       <SkillsSection />
       <AboutSection />
-      <Grid />
+      {/* <Grid /> */}
     </main>
   );
 }
