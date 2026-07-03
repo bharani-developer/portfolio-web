@@ -1,5 +1,8 @@
 import type { SkillCategory } from "../types/skills.types";
 
+/**
+ * Theme configuration for each skill category.
+ */
 export interface CategoryTheme {
   border: string;
   hoverBorder: string;
@@ -23,6 +26,9 @@ export interface CategoryTheme {
     | "pink";
 }
 
+/**
+ * Theme definitions for all skill categories.
+ */
 export const CATEGORY_THEME: Record<
   SkillCategory,
   CategoryTheme
@@ -180,3 +186,10 @@ export const CATEGORY_THEME: Record<
     progress: "cyan",
   },
 };
+
+/**
+ * Backward compatibility.
+ * Existing files importing CATEGORY_COLORS will continue to work.
+ * New code should import CATEGORY_THEME instead.
+ */
+export const CATEGORY_COLORS = CATEGORY_THEME;
