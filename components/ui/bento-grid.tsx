@@ -67,18 +67,6 @@ const fadeUp = {
   },
 } as const;
 
-const chipAnimation = {
-  whileHover: {
-    y: -3,
-    scale: 1.04,
-  },
-
-  transition: {
-    duration: 0.25,
-    ease: "easeOut",
-  },
-} as const;
-
 /* -------------------------------------------------------------------------- */
 /*                                Bento Grid                                  */
 /* -------------------------------------------------------------------------- */

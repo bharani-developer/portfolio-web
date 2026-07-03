@@ -60,7 +60,6 @@ function getSkillLevel(value: number) {
 export function SkillTile({
   skill,
   variant = "sm",
-  isFetching = false,
   className,
 }: SkillTileProps) {
   const styles = VARIANT[variant];
@@ -79,63 +78,52 @@ export function SkillTile({
       className={cn("group h-full", className)}
     >
       <div className="relative flex h-full flex-col">
-  <h4
-    className={cn(
-      "truncate font-semibold text-white",
-      styles.title,
-    )}
-  >
-    {skill.name}
-  </h4>
+        <h4 className={cn("truncate font-semibold text-white", styles.title)}>
+          {skill.name}
+        </h4>
 
-  <div className="mt-4 flex flex-1 items-start justify-between gap-4">
-    <div className="flex min-w-0 flex-1 items-start gap-3">
-      <div
-        className={cn(
-          "flex shrink-0 items-center justify-center border",
-          styles.iconBox,
-          theme.iconBorder,
-          theme.iconBackground,
-        )}
-      >
-        <SkillImage
-          image={skill.image}
-          name={skill.name}
-          size={styles.icon}
-        />
+        <div className="mt-4 flex flex-1 items-start justify-between gap-4">
+          <div className="flex min-w-0 flex-1 items-start gap-3">
+            <div
+              className={cn(
+                "flex shrink-0 items-center justify-center border",
+                styles.iconBox,
+                theme.iconBorder,
+                theme.iconBackground,
+              )}
+            >
+              <SkillImage
+                image={skill.image}
+                name={skill.name}
+                size={styles.icon}
+              />
+            </div>
+
+            <div className="min-w-0 flex-1">
+              <p className={cn("text-slate-400", styles.description)}>
+                {skill.description ?? `${skill.category} technology`}
+              </p>
+
+              <span
+                className={cn(
+                  "mt-3 inline-flex font-medium text-slate-500",
+                  styles.level,
+                )}
+              >
+                {getSkillLevel(skill.proficiency)}
+              </span>
+            </div>
+          </div>
+
+          <div className="shrink-0">
+            <SkillProgress
+              value={skill.proficiency}
+              size={styles.progress}
+              color={theme.progress}
+            />
+          </div>
+        </div>
       </div>
-
-      <div className="min-w-0 flex-1">
-        <p
-          className={cn(
-            "text-slate-400",
-            styles.description,
-          )}
-        >
-          {skill.description ??
-            `${skill.category} technology`}
-        </p>
-
-        <span
-          className={cn(
-            "mt-3 inline-flex font-medium text-slate-500",
-            styles.level,
-          )}
-        >
-          {getSkillLevel(skill.proficiency)}
-        </span>
-      </div>
-    </div>
-
-    <div className="shrink-0">
-      <SkillProgress
-        value={skill.proficiency}
-        size={styles.progress}
-        color={theme.progress}
-      />
-    </div>
-  </div>
-</div>
     </motion.article>
   );
 }
