@@ -14,6 +14,8 @@ import "./styles/globals.css";
 
 import { AppProvider } from "@/app/providers/app-provider";
 
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 /* ============================================================================
    Fonts
 ============================================================================ */
@@ -344,6 +346,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             {children}
           </main>
         </AppProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
