@@ -26,14 +26,14 @@ export const env = {
   site: {
     url: getEnvVariable(
       "NEXT_PUBLIC_SITE_URL",
-      "https://portfolio-backend-ovqj.onrender.com/api/v1",
+      "https://portfolio-backend-bk7r.onrender.com/api/v1",
     ),
   },
 
   api: {
     url: getEnvVariable(
       "NEXT_PUBLIC_API_URL",
-      "https://portfolio-backend-ovqj.onrender.com/api/v1",
+      "https://portfolio-backend-bk7r.onrender.com/api/v1",
     ),
   },
 
