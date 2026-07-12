@@ -1,11 +1,13 @@
 +-- src
 ¦   +-- app
-¦   ¦   +-- config
-¦   ¦   ¦   +-- navigation.tsx
 ¦   ¦   +-- favicon.ico
 ¦   ¦   +-- layout.tsx
 ¦   ¦   +-- page.tsx
 ¦   +-- components
+¦   ¦   +-- common
+¦   ¦   ¦   +-- section-container.tsx
+¦   ¦   ¦   +-- section-header.tsx
+¦   ¦   ¦   +-- section-heading.tsx
 ¦   ¦   +-- layout
 ¦   ¦   ¦   +-- section.tsx
 ¦   ¦   +-- ui
@@ -25,9 +27,8 @@
 ¦   ¦   ¦   +-- text-generate-effect.tsx
 ¦   ¦   ¦   +-- typewriter-effect.tsx
 ¦   ¦   +-- 3d-pin-demo.tsx
-¦   ¦   +-- section-container.tsx
-¦   ¦   +-- section-header.tsx
-¦   ¦   +-- section-heading.tsx
+¦   +-- config
+¦   ¦   +-- navigation.tsx
 ¦   +-- data
 ¦   ¦   +-- confetti.json
 ¦   ¦   +-- globe.json
@@ -269,6 +270,7 @@
 +-- package-lock.json
 +-- postcss.config.mjs
 +-- README.md
++-- structure.txt
 +-- tailwind.config.ts
 +-- tsconfig.json
 +-- tsconfig.tsbuildinfo

@@ -1,5 +1,3 @@
-// src\modules\experience\hooks\use-experience.ts
-
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
@@ -9,40 +7,40 @@ import { QUERY_KEYS } from "@/src/shared/constants/query-keys";
 import { experienceService } from "@/src/modules/experience/services/experience.service";
 
 import type {
-  ExperienceQueryParams,
+  Experience,
   UseExperienceReturn,
   UseExperiencesReturn,
 } from "@/src/modules/experience/types/experience.types";
 
 const STALE_TIME = 1000 * 60 * 10; // 10 minutes
+
 const GC_TIME = 1000 * 60 * 30; // 30 minutes
 
 /**
- * Get experiences list
+ * Shared React Query options
  */
-export function useExperiences(
-  params?: ExperienceQueryParams,
+const QUERY_OPTIONS = {
+  staleTime: STALE_TIME,
+
+  gcTime: GC_TIME,
+
+  refetchOnWindowFocus: false,
+
+  refetchOnReconnect: true,
+
+  refetchOnMount: false,
+
+  retry: 2,
+} as const;
+
+/**
+ * Shared mapper for list hooks
+ */
+function createExperiencesReturn(
+  query: ReturnType<
+    typeof useQuery<Experience[], Error>
+  >,
 ): UseExperiencesReturn {
-  const query = useQuery({
-    queryKey: [
-      ...QUERY_KEYS.experience,
-      params,
-    ],
-
-    queryFn: async () => {
-      const response =
-        await experienceService.getExperiences(
-          params,
-        );
-
-      return response.data;
-    },
-
-    staleTime: STALE_TIME,
-
-    gcTime: GC_TIME,
-  });
-
   return {
     experiences: query.data ?? [],
 
@@ -60,10 +58,60 @@ export function useExperiences(
 }
 
 /**
+ * Shared mapper for single experience hooks
+ */
+function createExperienceReturn(
+  query: ReturnType<
+    typeof useQuery<Experience, Error>
+  >,
+): UseExperienceReturn {
+  return {
+    experience: query.data ?? null,
+
+    isLoading: query.isLoading,
+
+    isFetching: query.isFetching,
+
+    isError: query.isError,
+
+    error: query.error,
+
+    refetch: async () =>
+      query.refetch(),
+  };
+}
+/**
+ * Get all experiences
+ */
+export function useExperiences(): UseExperiencesReturn {
+  const query = useQuery<
+    Experience[],
+    Error
+  >({
+    queryKey: [
+      ...QUERY_KEYS.experience,
+      "all",
+    ],
+
+    queryFn: () =>
+      experienceService.getExperiences(),
+
+    ...QUERY_OPTIONS,
+  });
+
+  return createExperiencesReturn(
+    query,
+  );
+}
+
+/**
  * Get active experiences
  */
 export function useActiveExperiences(): UseExperiencesReturn {
-  const query = useQuery({
+  const query = useQuery<
+    Experience[],
+    Error
+  >({
     queryKey: [
       ...QUERY_KEYS.experience,
       "active",
@@ -72,32 +120,22 @@ export function useActiveExperiences(): UseExperiencesReturn {
     queryFn: () =>
       experienceService.getActiveExperiences(),
 
-    staleTime: STALE_TIME,
-
-    gcTime: GC_TIME,
+    ...QUERY_OPTIONS,
   });
 
-  return {
-    experiences: query.data ?? [],
-
-    isLoading: query.isLoading,
-
-    isFetching: query.isFetching,
-
-    isError: query.isError,
-
-    error: query.error,
-
-    refetch: async () =>
-      query.refetch(),
-  };
+  return createExperiencesReturn(
+    query,
+  );
 }
 
 /**
  * Get current experiences
  */
 export function useCurrentExperiences(): UseExperiencesReturn {
-  const query = useQuery({
+  const query = useQuery<
+    Experience[],
+    Error
+  >({
     queryKey: [
       ...QUERY_KEYS.experience,
       "current",
@@ -106,71 +144,21 @@ export function useCurrentExperiences(): UseExperiencesReturn {
     queryFn: () =>
       experienceService.getCurrentExperiences(),
 
-    staleTime: STALE_TIME,
-
-    gcTime: GC_TIME,
+    ...QUERY_OPTIONS,
   });
 
-  return {
-    experiences: query.data ?? [],
-
-    isLoading: query.isLoading,
-
-    isFetching: query.isFetching,
-
-    isError: query.isError,
-
-    error: query.error,
-
-    refetch: async () =>
-      query.refetch(),
-  };
+  return createExperiencesReturn(
+    query,
+  );
 }
-
-/**
- * Get featured experiences
- */
-export function useFeaturedExperiences(
-  limit = 6,
-): UseExperiencesReturn {
-  const query = useQuery({
-    queryKey: [
-      ...QUERY_KEYS.experience,
-      "featured",
-      limit,
-    ],
-
-    queryFn: () =>
-      experienceService.getFeaturedExperiences(
-        limit,
-      ),
-
-    staleTime: STALE_TIME,
-
-    gcTime: GC_TIME,
-  });
-
-  return {
-    experiences: query.data ?? [],
-
-    isLoading: query.isLoading,
-
-    isFetching: query.isFetching,
-
-    isError: query.isError,
-
-    error: query.error,
-
-    refetch: async () =>
-      query.refetch(),
-  };
-}
-
 /**
  * Get homepage experiences
  */
 export function useHomepageExperiences(): UseExperiencesReturn {
-  const query = useQuery({
+  const query = useQuery<
+    Experience[],
+    Error
+  >({
     queryKey: [
       ...QUERY_KEYS.experience,
       "homepage",
@@ -179,222 +167,160 @@ export function useHomepageExperiences(): UseExperiencesReturn {
     queryFn: () =>
       experienceService.getHomepageExperiences(),
 
-    staleTime: STALE_TIME,
-
-    gcTime: GC_TIME,
+    ...QUERY_OPTIONS,
   });
 
-  return {
-    experiences: query.data ?? [],
-
-    isLoading: query.isLoading,
-
-    isFetching: query.isFetching,
-
-    isError: query.isError,
-
-    error: query.error,
-
-    refetch: async () =>
-      query.refetch(),
-  };
+  return createExperiencesReturn(
+    query,
+  );
 }
 
 /**
- * Get experience by id
+ * Get featured experiences
  */
-export function useExperience(
-  id: string,
-): UseExperienceReturn {
-  const query = useQuery({
+export function useFeaturedExperiences(): UseExperiencesReturn {
+  const query = useQuery<
+    Experience[],
+    Error
+  >({
     queryKey: [
       ...QUERY_KEYS.experience,
-      id,
+      "featured",
     ],
 
     queryFn: () =>
-      experienceService.getExperience(id),
+      experienceService.getFeaturedExperiences(),
 
-    enabled: Boolean(id),
-
-    staleTime: STALE_TIME,
-
-    gcTime: GC_TIME,
+    ...QUERY_OPTIONS,
   });
 
-  return {
-    experience: query.data ?? null,
-
-    isLoading: query.isLoading,
-
-    isFetching: query.isFetching,
-
-    isError: query.isError,
-
-    error: query.error,
-
-    refetch: async () =>
-      query.refetch(),
-  };
+  return createExperiencesReturn(
+    query,
+  );
 }
+/**
+ * Get experience by id
+ */
+// export function useExperience(
+//   id: string,
+// ): UseExperienceReturn {
+//   const query = useQuery<
+//     Experience,
+//     Error
+//   >({
+//     queryKey: [
+//       ...QUERY_KEYS.experience,
+//       "detail",
+//       id,
+//     ],
+
+//     queryFn: () =>
+//       experienceService.getExperience(
+//         id,
+//       ),
+
+//     enabled:
+//       id.trim().length > 0,
+
+//     ...QUERY_OPTIONS,
+//   });
+
+//   return createExperienceReturn(
+//     query,
+//   );
+// }
 
 /**
  * Get experience by slug
  */
-export function useExperienceBySlug(
-  slug: string,
-): UseExperienceReturn {
-  const query = useQuery({
-    queryKey: [
-      ...QUERY_KEYS.experience,
-      "slug",
-      slug,
-    ],
+// export function useExperienceBySlug(
+//   slug: string,
+// ): UseExperienceReturn {
+//   const query = useQuery<
+//     Experience,
+//     Error
+//   >({
+//     queryKey: [
+//       ...QUERY_KEYS.experience,
+//       "slug",
+//       slug,
+//     ],
 
-    queryFn: () =>
-      experienceService.getExperienceBySlug(
-        slug,
-      ),
+//     queryFn: () =>
+//       experienceService.getExperienceBySlug(
+//         slug,
+//       ),
 
-    enabled: Boolean(slug),
+//     enabled:
+//       slug.trim().length > 0,
 
-    staleTime: STALE_TIME,
+//     ...QUERY_OPTIONS,
+//   });
 
-    gcTime: GC_TIME,
-  });
+//   return createExperienceReturn(
+//     query,
+//   );
+// }
+// /**
+//  * Get experiences by company
+//  */
+// export function useExperiencesByCompany(
+//   company: string,
+// ): UseExperiencesReturn {
+//   const query = useQuery<
+//     Experience[],
+//     Error
+//   >({
+//     queryKey: [
+//       ...QUERY_KEYS.experience,
+//       "company",
+//       company,
+//     ],
 
-  return {
-    experience: query.data ?? null,
+//     queryFn: () =>
+//       experienceService.getExperiencesByCompany(
+//         company,
+//       ),
 
-    isLoading: query.isLoading,
+//     enabled:
+//       company.trim().length > 0,
 
-    isFetching: query.isFetching,
+//     ...QUERY_OPTIONS,
+//   });
 
-    isError: query.isError,
+//   return createExperiencesReturn(
+//     query,
+//   );
+// }
 
-    error: query.error,
+// /**
+//  * Get experiences by technology
+//  */
+// export function useExperiencesByTechnology(
+//   technology: string,
+// ): UseExperiencesReturn {
+//   const query = useQuery<
+//     Experience[],
+//     Error
+//   >({
+//     queryKey: [
+//       ...QUERY_KEYS.experience,
+//       "technology",
+//       technology,
+//     ],
 
-    refetch: async () =>
-      query.refetch(),
-  };
-}
+//     queryFn: () =>
+//       experienceService.getExperiencesByTechnology(
+//         technology,
+//       ),
 
-/**
- * Get experiences by company
- */
-export function useExperiencesByCompany(
-  company: string,
-): UseExperiencesReturn {
-  const query = useQuery({
-    queryKey: [
-      ...QUERY_KEYS.experience,
-      "company",
-      company,
-    ],
+//     enabled:
+//       technology.trim().length > 0,
 
-    queryFn: () =>
-      experienceService.getExperiencesByCompany(
-        company,
-      ),
+//     ...QUERY_OPTIONS,
+//   });
 
-    enabled: Boolean(company),
-
-    staleTime: STALE_TIME,
-
-    gcTime: GC_TIME,
-  });
-
-  return {
-    experiences: query.data ?? [],
-
-    isLoading: query.isLoading,
-
-    isFetching: query.isFetching,
-
-    isError: query.isError,
-
-    error: query.error,
-
-    refetch: async () =>
-      query.refetch(),
-  };
-}
-
-/**
- * Get experiences by technology
- */
-export function useExperiencesByTechnology(
-  technology: string,
-): UseExperiencesReturn {
-  const query = useQuery({
-    queryKey: [
-      ...QUERY_KEYS.experience,
-      "technology",
-      technology,
-    ],
-
-    queryFn: () =>
-      experienceService.getExperiencesByTechnology(
-        technology,
-      ),
-
-    enabled: Boolean(technology),
-
-    staleTime: STALE_TIME,
-
-    gcTime: GC_TIME,
-  });
-
-  return {
-    experiences: query.data ?? [],
-
-    isLoading: query.isLoading,
-
-    isFetching: query.isFetching,
-
-    isError: query.isError,
-
-    error: query.error,
-
-    refetch: async () =>
-      query.refetch(),
-  };
-}
-
-/**
- * Get total experiences count
- */
-export function useExperiencesCount() {
-  return useQuery({
-    queryKey: [
-      ...QUERY_KEYS.experience,
-      "count",
-    ],
-
-    queryFn: () =>
-      experienceService.getExperiencesCount(),
-
-    staleTime: STALE_TIME,
-
-    gcTime: GC_TIME,
-  });
-}
-
-/**
- * Get current positions count
- */
-export function useCurrentPositionsCount() {
-  return useQuery({
-    queryKey: [
-      ...QUERY_KEYS.experience,
-      "current-count",
-    ],
-
-    queryFn: () =>
-      experienceService.getCurrentPositionsCount(),
-
-    staleTime: STALE_TIME,
-
-    gcTime: GC_TIME,
-  });
-}
+//   return createExperiencesReturn(
+//     query,
+//   );
+// }

@@ -2,7 +2,7 @@
 
 "use client";
 
-import SectionContainer from "@/src/components/section-container";
+import SectionContainer from "@/src/components/common/section-container";
 
 import { AboutSection } from "@/src/modules/about/components/about-section";
 import { SkillsSection } from "@/src/modules/skills/components/skills-section";

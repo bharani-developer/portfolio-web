@@ -1,155 +1,258 @@
-// "use client";
+// src/modules/experience/components/experience-timeline.tsx
 
-// import * as React from "react";
+"use client";
 
-// import {
-//   BriefcaseBusinessIcon,
-//   Building2Icon,
-//   CalendarIcon,
-//   MapPinIcon,
-// } from "lucide-react";
+import * as React from "react";
 
-// import { Badge } from "@/components/ui/badge";
-// import { Card, CardContent } from "@/components/ui/card";
+import { motion } from "motion/react";
 
-// import type { Experience } from "@/app/modules//experience/types/experience.types";
+import { cn } from "@/src/shared/lib/utils";
 
-// export interface ExperienceCardProps {
-//   experience: Experience;
+import type { Experience } from "../types/experience.types";
 
-//   isLast?: boolean;
-// }
+import { ExperienceCard } from "./experience-card";
 
-// function formatDate(date: string): string {
-//   return new Intl.DateTimeFormat("en-US", {
-//     month: "short",
-//     year: "numeric",
-//   }).format(new Date(date));
-// }
+interface ExperienceTimelineProps {
+  readonly experiences: Experience[];
 
-// function getDuration(startDate: string, endDate?: string | null): string {
-//   const start = formatDate(startDate);
+  readonly className?: string;
+}
 
-//   if (!endDate) {
-//     return `${start} - Present`;
-//   }
+const containerVariants = {
+  hidden: {
+    opacity: 0,
+  },
 
-//   return `${start} - ${formatDate(endDate)}`;
-// }
+  visible: {
+    opacity: 1,
 
-// export function ExperienceCard({
-//   experience,
-//   isLast = false,
-// }: Readonly<ExperienceCardProps>): React.JSX.Element {
-//   return (
-//     <div className="relative pl-10">
-//       {!isLast ? (
-//         <div className="absolute left-[18px] top-10 h-[calc(100%+2rem)] w-px bg-border" />
-//       ) : null}
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.08,
+    },
+  },
+} as const;
 
-//       <div className="absolute left-0 top-2 flex size-9 items-center justify-center rounded-full border border-border bg-background shadow-sm">
-//         <BriefcaseBusinessIcon className="size-4 text-primary" />
-//       </div>
+const itemVariants = {
+  hidden: {
+    opacity: 0,
+    y: 28,
+  },
 
-//       <Card className="overflow-hidden border-border/60 transition-all duration-300 hover:border-primary/20 hover:shadow-lg">
-//         <CardContent className="p-6">
-//           <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-//             <div className="space-y-2">
-//               <div className="flex flex-wrap items-center gap-2">
-//                 <h3 className="text-xl font-semibold tracking-tight">
-//                   {experience.position}
-//                 </h3>
+  visible: {
+    opacity: 1,
+    y: 0,
 
-//                 {experience.isCurrent ? <Badge>Current</Badge> : null}
-//               </div>
+    transition: {
+      duration: 0.45,
+      ease: "easeOut",
+    },
+  },
+} as const;
 
-//               <div className="flex flex-wrap items-center gap-2 text-sm">
-//                 <Building2Icon className="size-4 text-primary" />
+export function ExperienceTimeline({
+  experiences,
+  className,
+}: Readonly<ExperienceTimelineProps>): React.JSX.Element {
+  const prefersReducedMotion = React.useMemo(() => {
+    if (typeof window === "undefined") {
+      return false;
+    }
 
-//                 <span className="font-medium text-primary">
-//                   {experience.company}
-//                 </span>
-//               </div>
-//             </div>
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }, []);
 
-//             <div className="flex flex-wrap gap-2">
-//               <Badge variant="secondary">{experience.employmentType}</Badge>
+  const sortedExperiences = React.useMemo(() => {
+    return [...experiences].sort((a, b) => {
+      if (a.sortOrder !== b.sortOrder) {
+        return b.sortOrder - a.sortOrder;
+      }
 
-//               <Badge variant="outline">{experience.workMode}</Badge>
-//             </div>
-//           </div>
+      return new Date(b.startDate).getTime() - new Date(a.startDate).getTime();
+    });
+  }, [experiences]);
 
-//           <div className="mt-4 flex flex-wrap gap-4 text-sm text-muted-foreground">
-//             <div className="flex items-center gap-2">
-//               <CalendarIcon className="size-4" />
+  if (sortedExperiences.length === 0) {
+    return (
+      <div
+        role="status"
+        aria-live="polite"
+        className={cn(
+          "flex min-h-80 items-center justify-center rounded-3xl",
+          "border border-dashed border-border",
+          "bg-card/40",
+          className,
+        )}
+      >
+        <div className="max-w-md text-center">
+          <h3 className="text-xl font-semibold">No experience available</h3>
 
-//               <span>
-//                 {getDuration(experience.startDate, experience.endDate)}
-//               </span>
-//             </div>
+          <p className="mt-3 text-sm leading-7 text-muted-foreground">
+            Professional experience will appear here once it has been published.
+          </p>
+        </div>
+      </div>
+    );
+  }
 
-//             <div className="flex items-center gap-2">
-//               <MapPinIcon className="size-4" />
+  return (
+    <motion.div
+      role="list"
+      aria-label="Professional experience timeline"
+      variants={prefersReducedMotion ? undefined : containerVariants}
+      initial={prefersReducedMotion ? undefined : "hidden"}
+      whileInView={prefersReducedMotion ? undefined : "visible"}
+      viewport={{
+        once: true,
+        amount: 0.15,
+      }}
+      className={cn("relative mx-auto max-w-6xl", className)}
+    >
+      {/* Desktop Timeline */}
 
-//               <span>{experience.location}</span>
-//             </div>
-//           </div>
+      <div
+        aria-hidden="true"
+        className={cn(
+          "absolute left-[18px] top-0 hidden h-full w-px",
+          "bg-gradient-to-b",
+          "from-transparent",
+          "via-border",
+          "to-transparent",
+          "lg:block",
+        )}
+      />
 
-//           <p className="mt-5 leading-7 text-muted-foreground">
-//             {experience.summary}
-//           </p>
+      {/* Mobile Timeline */}
 
-//           {experience.responsibilities.length > 0 ? (
-//             <div className="mt-6">
-//               <h4 className="mb-3 text-sm font-semibold uppercase tracking-wide text-foreground">
-//                 Responsibilities
-//               </h4>
+      <div
+        aria-hidden="true"
+        className="absolute left-4 top-0 block h-full w-px bg-border/60 lg:hidden"
+      />
 
-//               <ul className="space-y-2">
-//                 {experience.responsibilities.map((responsibility) => (
-//                   <li
-//                     key={responsibility}
-//                     className="flex gap-3 text-sm text-muted-foreground"
-//                   >
-//                     <span className="mt-2 size-1.5 shrink-0 rounded-full bg-primary" />
+      <div className="space-y-10">
+        {sortedExperiences.map((experience, index) => {
+          const isLast = index === sortedExperiences.length - 1;
 
-//                     <span>{responsibility}</span>
-//                   </li>
-//                 ))}
-//               </ul>
-//             </div>
-//           ) : null}
+          return (
+            <motion.article
+              key={experience._id}
+              role="listitem"
+              variants={prefersReducedMotion ? undefined : itemVariants}
+              className="relative"
+            >
+              {/* Desktop Timeline Node */}
 
-//           {experience.technologies.length > 0 ? (
-//             <div className="mt-6">
-//               <h4 className="mb-3 text-sm font-semibold uppercase tracking-wide text-foreground">
-//                 Technologies
-//               </h4>
+              <div
+                className={cn(
+                  "absolute left-[18px] top-5 z-20 hidden -translate-x-1/2 lg:block",
+                )}
+              >
+                <motion.div
+                  initial={
+                    prefersReducedMotion
+                      ? undefined
+                      : {
+                          opacity: 0,
+                          scale: 0.8,
+                        }
+                  }
+                  whileInView={
+                    prefersReducedMotion
+                      ? undefined
+                      : {
+                          opacity: 1,
+                          scale: 1,
+                        }
+                  }
+                  viewport={{
+                    once: true,
+                  }}
+                  transition={{
+                    duration: 0.35,
+                  }}
+                  className="relative"
+                >
+                  {/* Current Position Pulse */}
 
-//               <div className="flex flex-wrap gap-2">
-//                 {experience.technologies.map((technology) => (
-//                   <Badge key={technology} variant="outline">
-//                     {technology}
-//                   </Badge>
-//                 ))}
-//               </div>
-//             </div>
-//           ) : null}
+                  {experience.isCurrent && (
+                    <span className="absolute inset-0 animate-ping rounded-full bg-primary/30" />
+                  )}
 
-//           {experience.companyWebsite ? (
-//             <div className="mt-6 border-t pt-4">
-//               <a
-//                 href={experience.companyWebsite}
-//                 target="_blank"
-//                 rel="noopener noreferrer"
-//                 className="text-sm font-medium text-primary transition-colors hover:underline"
-//               >
-//                 Visit Company Website
-//               </a>
-//             </div>
-//           ) : null}
-//         </CardContent>
-//       </Card>
-//     </div>
-//   );
-// }
+                  <span
+                    className={cn(
+                      "relative flex h-5 w-5 items-center justify-center rounded-full",
+                      "border-4 border-background shadow-lg",
+                      experience.isCurrent ? "bg-primary" : "bg-muted",
+                    )}
+                  >
+                    <span
+                      className={cn(
+                        "h-1.5 w-1.5 rounded-full",
+                        experience.isCurrent
+                          ? "bg-primary-foreground"
+                          : "bg-foreground/70",
+                      )}
+                    />
+                  </span>
+                </motion.div>
+              </div>
+
+              {/* Mobile Timeline Node */}
+
+              <div
+                className={cn(
+                  "absolute left-4 top-5 z-20 -translate-x-1/2 lg:hidden",
+                )}
+              >
+                <span
+                  className={cn(
+                    "block h-3 w-3 rounded-full",
+                    experience.isCurrent ? "bg-primary" : "bg-muted-foreground",
+                  )}
+                />
+              </div>
+              {/* Desktop Timeline Connector */}
+
+              {!isLast && (
+                <div
+                  aria-hidden="true"
+                  className={cn(
+                    "absolute left-[18px] top-10 hidden lg:block",
+                    "h-[calc(100%+2.5rem)] w-px",
+                    "bg-gradient-to-b",
+                    "from-border",
+                    "via-border/70",
+                    "to-transparent",
+                  )}
+                />
+              )}
+
+              {/* Mobile Timeline Connector */}
+
+              {!isLast && (
+                <div
+                  aria-hidden="true"
+                  className={cn(
+                    "absolute left-4 top-8 block lg:hidden",
+                    "h-[calc(100%+2.5rem)] w-px",
+                    "bg-border/60",
+                  )}
+                />
+              )}
+
+              {/* Experience Card */}
+
+              <div className="pl-10 lg:pl-16">
+                <ExperienceCard experience={experience} isLast={isLast} />
+              </div>
+            </motion.article>
+          );
+        })}
+      </div>
+    </motion.div>
+  );
+}
+
+ExperienceTimeline.displayName = "ExperienceTimeline";
+
+export default React.memo(ExperienceTimeline);

@@ -9,6 +9,8 @@ import { QUERY_KEYS } from "@/src/shared/constants/query-keys";
 import { homeService } from "../services/home.service";
 
 export function useHomeData() {
+    console.log("useHomeData called");
+
   const query = useQuery({
     queryKey: QUERY_KEYS.home,
 

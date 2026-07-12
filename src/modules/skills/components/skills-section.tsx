@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 
-import { SectionHeader } from "@/src/components/section-header";
+import { SectionHeader } from "@/src/components/common/section-header";
 import { Section } from "@/src/components/layout/section";
 
 import { useGroupedSkills } from "../hooks/use-skills";
