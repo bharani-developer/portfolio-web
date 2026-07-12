@@ -1,0 +1,274 @@
++-- src
+¦   +-- app
+¦   ¦   +-- config
+¦   ¦   ¦   +-- navigation.tsx
+¦   ¦   +-- favicon.ico
+¦   ¦   +-- layout.tsx
+¦   ¦   +-- page.tsx
+¦   +-- components
+¦   ¦   +-- layout
+¦   ¦   ¦   +-- section.tsx
+¦   ¦   +-- ui
+¦   ¦   ¦   +-- 3d-pin.tsx
+¦   ¦   ¦   +-- alert.tsx
+¦   ¦   ¦   +-- avatar.tsx
+¦   ¦   ¦   +-- badge.tsx
+¦   ¦   ¦   +-- bento-grid.tsx
+¦   ¦   ¦   +-- button.tsx
+¦   ¦   ¦   +-- card.tsx
+¦   ¦   ¦   +-- collapsible.tsx
+¦   ¦   ¦   +-- floating-navbar.tsx
+¦   ¦   ¦   +-- magic-button.tsx
+¦   ¦   ¦   +-- separator.tsx
+¦   ¦   ¦   +-- skeleton.tsx
+¦   ¦   ¦   +-- spotlight-new.tsx
+¦   ¦   ¦   +-- text-generate-effect.tsx
+¦   ¦   ¦   +-- typewriter-effect.tsx
+¦   ¦   +-- 3d-pin-demo.tsx
+¦   ¦   +-- section-container.tsx
+¦   ¦   +-- section-header.tsx
+¦   ¦   +-- section-heading.tsx
+¦   +-- data
+¦   ¦   +-- confetti.json
+¦   ¦   +-- globe.json
+¦   ¦   +-- index.ts
+¦   +-- modules
+¦   ¦   +-- about
+¦   ¦   ¦   +-- components
+¦   ¦   ¦   ¦   +-- about-contact.tsx
+¦   ¦   ¦   ¦   +-- about-content.tsx
+¦   ¦   ¦   ¦   +-- about-empty.tsx
+¦   ¦   ¦   ¦   +-- about-error.tsx
+¦   ¦   ¦   ¦   +-- about-profile.tsx
+¦   ¦   ¦   ¦   +-- about-section.tsx
+¦   ¦   ¦   ¦   +-- about-section_old.tsx
+¦   ¦   ¦   ¦   +-- about-skeleton.tsx
+¦   ¦   ¦   ¦   +-- about-stats.tsx
+¦   ¦   ¦   +-- hooks
+¦   ¦   ¦   ¦   +-- use-about.ts
+¦   ¦   ¦   +-- services
+¦   ¦   ¦   ¦   +-- about.service.ts
+¦   ¦   ¦   +-- types
+¦   ¦   ¦   ¦   +-- about.types.ts
+¦   ¦   ¦   +-- index.ts
+¦   ¦   +-- blog
+¦   ¦   ¦   +-- components
+¦   ¦   ¦   ¦   +-- blog-card.tsx
+¦   ¦   ¦   ¦   +-- blog-section.tsx
+¦   ¦   ¦   +-- hooks
+¦   ¦   ¦   ¦   +-- use-blog.ts
+¦   ¦   ¦   +-- services
+¦   ¦   ¦   ¦   +-- blog.service.ts
+¦   ¦   ¦   +-- types
+¦   ¦   ¦   ¦   +-- blog.types.ts
+¦   ¦   ¦   +-- index.ts
+¦   ¦   +-- certifications
+¦   ¦   ¦   +-- components
+¦   ¦   ¦   ¦   +-- certifications-section.tsx
+¦   ¦   ¦   +-- hooks
+¦   ¦   ¦   ¦   +-- use-certifications.ts
+¦   ¦   ¦   +-- services
+¦   ¦   ¦   ¦   +-- certifications.service.ts
+¦   ¦   ¦   +-- types
+¦   ¦   ¦   ¦   +-- certifications.types.ts
+¦   ¦   ¦   +-- index.ts
+¦   ¦   +-- contact
+¦   ¦   ¦   +-- components
+¦   ¦   ¦   ¦   +-- contact-form.tsx
+¦   ¦   ¦   ¦   +-- contact-section.tsx
+¦   ¦   ¦   +-- hooks
+¦   ¦   ¦   ¦   +-- use-contact.ts
+¦   ¦   ¦   +-- services
+¦   ¦   ¦   ¦   +-- contact.service.ts
+¦   ¦   ¦   +-- types
+¦   ¦   ¦   ¦   +-- contact.types.ts
+¦   ¦   ¦   +-- index.ts
+¦   ¦   +-- education
+¦   ¦   ¦   +-- components
+¦   ¦   ¦   ¦   +-- education-section.tsx
+¦   ¦   ¦   +-- hooks
+¦   ¦   ¦   ¦   +-- use-education.ts
+¦   ¦   ¦   +-- services
+¦   ¦   ¦   ¦   +-- education.service.ts
+¦   ¦   ¦   +-- types
+¦   ¦   ¦   ¦   +-- education.types.ts
+¦   ¦   ¦   +-- index.ts
+¦   ¦   +-- experience
+¦   ¦   ¦   +-- components
+¦   ¦   ¦   ¦   +-- experience-card.tsx
+¦   ¦   ¦   ¦   +-- experience-page-content.tsx
+¦   ¦   ¦   ¦   +-- experience-section.tsx
+¦   ¦   ¦   ¦   +-- experience-timeline.tsx
+¦   ¦   ¦   +-- hooks
+¦   ¦   ¦   ¦   +-- use-experience.ts
+¦   ¦   ¦   +-- services
+¦   ¦   ¦   ¦   +-- experience.service.ts
+¦   ¦   ¦   +-- types
+¦   ¦   ¦   ¦   +-- experience.types.ts
+¦   ¦   ¦   +-- index.ts
+¦   ¦   +-- grid
+¦   ¦   ¦   +-- components
+¦   ¦   ¦       +-- grid-section.tsx
+¦   ¦   +-- hero
+¦   ¦   ¦   +-- components
+¦   ¦   ¦   ¦   +-- hero.tsx
+¦   ¦   ¦   ¦   +-- hero-background.tsx
+¦   ¦   ¦   ¦   +-- hero-content.tsx
+¦   ¦   ¦   ¦   +-- hero-error.tsx
+¦   ¦   ¦   ¦   +-- hero-image.tsx
+¦   ¦   ¦   ¦   +-- hero-scroll-indicator.tsx
+¦   ¦   ¦   ¦   +-- hero-section.tsx
+¦   ¦   ¦   ¦   +-- hero-skeleton.tsx
+¦   ¦   ¦   ¦   +-- hero-spotlight.tsx
+¦   ¦   ¦   ¦   +-- hero-stats.tsx
+¦   ¦   ¦   ¦   +-- hero-tech-stack.tsx
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   +-- hooks
+¦   ¦   ¦   ¦   +-- use-hero.ts
+¦   ¦   ¦   +-- services
+¦   ¦   ¦   ¦   +-- hero.service.ts
+¦   ¦   ¦   +-- types
+¦   ¦   ¦   ¦   +-- hero.types.ts
+¦   ¦   ¦   +-- index.ts
+¦   ¦   +-- home
+¦   ¦   ¦   +-- components
+¦   ¦   ¦   ¦   +-- about-skills-section.tsx
+¦   ¦   ¦   ¦   +-- home-loading.tsx
+¦   ¦   ¦   ¦   +-- home-page.tsx
+¦   ¦   ¦   +-- hooks
+¦   ¦   ¦   ¦   +-- use-home-data.ts
+¦   ¦   ¦   +-- sections
+¦   ¦   ¦   ¦   +-- about-section.tsx
+¦   ¦   ¦   ¦   +-- contact-section.tsx
+¦   ¦   ¦   ¦   +-- experience-section.tsx
+¦   ¦   ¦   ¦   +-- hero-section.tsx
+¦   ¦   ¦   ¦   +-- projects-section.tsx
+¦   ¦   ¦   ¦   +-- services-section.tsx
+¦   ¦   ¦   ¦   +-- skills-section.tsx
+¦   ¦   ¦   ¦   +-- testimonials-section.tsx
+¦   ¦   ¦   +-- services
+¦   ¦   ¦   ¦   +-- home.service.ts
+¦   ¦   ¦   +-- types
+¦   ¦   ¦   ¦   +-- home.types.ts
+¦   ¦   ¦   +-- index.ts
+¦   ¦   +-- portfolio
+¦   ¦   ¦   +-- components
+¦   ¦   ¦   ¦   +-- portfolio-section.tsx
+¦   ¦   ¦   +-- data
+¦   ¦   ¦   ¦   +-- grid-items.ts
+¦   ¦   ¦   +-- hooks
+¦   ¦   ¦   +-- services
+¦   ¦   ¦   +-- types
+¦   ¦   ¦   +-- index.ts
+¦   ¦   +-- projects
+¦   ¦   ¦   +-- components
+¦   ¦   ¦   ¦   +-- project-card.tsx
+¦   ¦   ¦   ¦   +-- projects-section.tsx
+¦   ¦   ¦   +-- hooks
+¦   ¦   ¦   ¦   +-- use-projects.ts
+¦   ¦   ¦   +-- services
+¦   ¦   ¦   ¦   +-- projects.service.ts
+¦   ¦   ¦   +-- types
+¦   ¦   ¦   ¦   +-- projects.types.ts
+¦   ¦   ¦   +-- index.ts
+¦   ¦   +-- services
+¦   ¦   ¦   +-- components
+¦   ¦   ¦   ¦   +-- services-page-content.tsx
+¦   ¦   ¦   ¦   +-- services-section.tsx
+¦   ¦   ¦   +-- hooks
+¦   ¦   ¦   ¦   +-- use-services.ts
+¦   ¦   ¦   +-- services
+¦   ¦   ¦   ¦   +-- services.service.ts
+¦   ¦   ¦   +-- types
+¦   ¦   ¦   ¦   +-- services.types.ts
+¦   ¦   ¦   +-- index.ts
+¦   ¦   +-- skills
+¦   ¦   ¦   +-- components
+¦   ¦   ¦   ¦   +-- category-layout.ts
+¦   ¦   ¦   ¦   +-- index.ts
+¦   ¦   ¦   ¦   +-- skill-card.tsx
+¦   ¦   ¦   ¦   +-- skill-chip.tsx
+¦   ¦   ¦   ¦   +-- skill-header.tsx
+¦   ¦   ¦   ¦   +-- skill-image.tsx
+¦   ¦   ¦   ¦   +-- skill-pill.tsx
+¦   ¦   ¦   ¦   +-- skill-progress.tsx
+¦   ¦   ¦   ¦   +-- skills-category.tsx
+¦   ¦   ¦   ¦   +-- skills-empty.tsx
+¦   ¦   ¦   ¦   +-- skills-error.tsx
+¦   ¦   ¦   ¦   +-- skills-grid.tsx
+¦   ¦   ¦   ¦   +-- skills-list.tsx
+¦   ¦   ¦   ¦   +-- skills-section.tsx
+¦   ¦   ¦   ¦   +-- skills-skeleton.tsx
+¦   ¦   ¦   ¦   +-- skill-tile.tsx
+¦   ¦   ¦   +-- constants
+¦   ¦   ¦   ¦   +-- category-description.ts
+¦   ¦   ¦   ¦   +-- category-grid.ts
+¦   ¦   ¦   ¦   +-- category-icons.tsx
+¦   ¦   ¦   ¦   +-- category-layout.ts
+¦   ¦   ¦   ¦   +-- category-theme.ts
+¦   ¦   ¦   +-- hooks
+¦   ¦   ¦   ¦   +-- use-skills.ts
+¦   ¦   ¦   +-- services
+¦   ¦   ¦   ¦   +-- skills.service.ts
+¦   ¦   ¦   +-- types
+¦   ¦   ¦   ¦   +-- skills.types.ts
+¦   ¦   ¦   +-- utils
+¦   ¦   ¦   ¦   +-- calculate-skill-stats.ts
+¦   ¦   ¦   ¦   +-- group-skills.ts
+¦   ¦   ¦   +-- index.ts
+¦   ¦   +-- testimonials
+¦   ¦       +-- components
+¦   ¦       ¦   +-- testimonial-card.tsx
+¦   ¦       ¦   +-- testimonials-section.tsx
+¦   ¦       +-- hooks
+¦   ¦       ¦   +-- use-testimonials.ts
+¦   ¦       +-- services
+¦   ¦       ¦   +-- testimonials.service.ts
+¦   ¦       +-- types
+¦   ¦       ¦   +-- testimonials.types.ts
+¦   ¦       +-- index.ts
+¦   +-- providers
+¦   ¦   +-- app-provider.tsx
+¦   ¦   +-- query-provider.tsx
+¦   ¦   +-- smooth-scroll-provider.tsx
+¦   ¦   +-- theme-provider.tsx
+¦   +-- shared
+¦   ¦   +-- constants
+¦   ¦   ¦   +-- api.ts
+¦   ¦   ¦   +-- navigation.ts
+¦   ¦   ¦   +-- query-keys.ts
+¦   ¦   ¦   +-- routes.ts
+¦   ¦   ¦   +-- site.ts
+¦   ¦   +-- hooks
+¦   ¦   ¦   +-- use-media-query.ts
+¦   ¦   ¦   +-- use-scroll.ts
+¦   ¦   ¦   +-- use-theme.ts
+¦   ¦   +-- lib
+¦   ¦   ¦   +-- env.ts
+¦   ¦   ¦   +-- query-client.ts
+¦   ¦   ¦   +-- utils.ts
+¦   ¦   +-- schemas
+¦   ¦   +-- services
+¦   ¦   ¦   +-- http-client.ts
+¦   ¦   +-- types
+¦   ¦       +-- api.ts
+¦   ¦       +-- common.ts
+¦   ¦       +-- image.ts
+¦   ¦       +-- pagination.ts
+¦   ¦       +-- seo.ts
+¦   +-- styles
+¦       +-- globals.css
++-- .gitignore
++-- AGENTS.md
++-- CLAUDE.md
++-- components.json
++-- eslint.config.mjs
++-- next.config.ts
++-- next-env.d.ts
++-- package.json
++-- package-lock.json
++-- postcss.config.mjs
++-- README.md
++-- tailwind.config.ts
++-- tsconfig.json
++-- tsconfig.tsbuildinfo
