@@ -1,5 +1,3 @@
-// src/modules/experience/components/experience-section.tsx
-
 "use client";
 
 import * as React from "react";
@@ -11,11 +9,11 @@ import { Section } from "@/src/components/layout/section";
 
 import { useHomepageExperiences } from "../hooks/use-experience";
 
+import { ExperienceCTA } from "./experience-cta";
 import { ExperienceEmpty } from "./experience-empty";
 import { ExperienceError } from "./experience-error";
 import { ExperienceSkeleton } from "./experience-skeleton";
 import { ExperienceTimeline } from "./experience-timeline";
-import { ExperienceCTA } from "./experience-cta";
 
 export function ExperienceSection(): React.JSX.Element {
   const {
@@ -37,39 +35,81 @@ export function ExperienceSection(): React.JSX.Element {
   );
 
   /**
-   * Loading
+   * Loading State
    */
+
   if (isLoading) {
     return (
       <Section
         id="experience"
         spacing="xl"
+        containerSize="2xl"
         className="relative overflow-hidden"
       >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Background */}
+
+        <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_top_left,rgba(6,182,212,.07),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(59,130,246,.06),transparent_35%)]" />
+
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_bottom,transparent,rgba(255,255,255,.015),transparent)]" />
+
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 0.4,
+            ease: "easeOut",
+          }}
+        >
           {header}
 
-          <div className="mt-16">
+          <div className="mt-20">
             <ExperienceSkeleton />
           </div>
-        </div>
+        </motion.div>
       </Section>
     );
   }
     /**
-   * Error
+   * Error State
    */
+
   if (isError) {
     return (
       <Section
         id="experience"
         spacing="xl"
+        containerSize="2xl"
         className="relative overflow-hidden"
       >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Background */}
+
+        <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_top_left,rgba(6,182,212,.07),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(59,130,246,.06),transparent_35%)]" />
+
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_bottom,transparent,rgba(255,255,255,.015),transparent)]" />
+
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 0.4,
+            ease: "easeOut",
+          }}
+        >
           {header}
 
-          <div className="mt-16">
+          <div className="mt-20">
             <ExperienceError
               error={error}
               onRetry={() => {
@@ -77,39 +117,62 @@ export function ExperienceSection(): React.JSX.Element {
               }}
             />
           </div>
-        </div>
+        </motion.div>
       </Section>
     );
   }
 
   /**
-   * Empty
+   * Empty State
    */
+
   if (experiences.length === 0) {
     return (
       <Section
         id="experience"
         spacing="xl"
+        containerSize="2xl"
         className="relative overflow-hidden"
       >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Background */}
+
+        <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_top_left,rgba(6,182,212,.07),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(59,130,246,.06),transparent_35%)]" />
+
+        <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_bottom,transparent,rgba(255,255,255,.015),transparent)]" />
+
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 0.4,
+            ease: "easeOut",
+          }}
+        >
           {header}
 
-          <div className="mt-16">
+          <div className="mt-20">
             <ExperienceEmpty />
           </div>
-        </div>
+        </motion.div>
       </Section>
     );
   }
 
   /**
-   * Success
+   * Success State
    */
+
   return (
     <Section
       id="experience"
       spacing="xl"
+      containerSize="2xl"
       className="relative overflow-hidden"
     >
       {/* Background */}
@@ -121,7 +184,7 @@ export function ExperienceSection(): React.JSX.Element {
       <motion.div
         initial={{
           opacity: 0,
-          y: 30,
+          y: 32,
         }}
         whileInView={{
           opacity: 1,
@@ -135,18 +198,21 @@ export function ExperienceSection(): React.JSX.Element {
           duration: 0.6,
           ease: "easeOut",
         }}
-        className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
       >
         {header}
 
-        <div className="mt-20">
-          <ExperienceTimeline
-            experiences={experiences}
-          />
+        {/* Timeline */}
+                <div className="mt-20">
+          <div className="-mx-4 sm:-mx-6 lg:-mx-8 2xl:-mx-12">
+            <ExperienceTimeline
+              experiences={experiences}
+            />
+          </div>
         </div>
-                {/* CTA */}
 
-        <div className="mt-20">
+        {/* Call To Action */}
+
+        <div className="mt-24">
           <ExperienceCTA />
         </div>
 
@@ -156,12 +222,18 @@ export function ExperienceSection(): React.JSX.Element {
           <motion.div
             initial={{
               opacity: 0,
+              y: 8,
             }}
             animate={{
               opacity: 1,
+              y: 0,
             }}
             exit={{
               opacity: 0,
+              y: -8,
+            }}
+            transition={{
+              duration: 0.25,
             }}
             className="mt-8 flex justify-end"
           >
@@ -174,15 +246,16 @@ export function ExperienceSection(): React.JSX.Element {
                 border
                 border-cyan-500/20
                 bg-cyan-500/10
-                px-3
-                py-1
+                px-3.5
+                py-1.5
                 text-xs
                 font-medium
                 text-cyan-300
-                backdrop-blur-sm
+                shadow-sm
+                backdrop-blur-md
               "
             >
-              <span className="h-2 w-2 animate-pulse rounded-full bg-cyan-400" />
+              <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
 
               Updating experience...
             </span>
@@ -193,9 +266,6 @@ export function ExperienceSection(): React.JSX.Element {
   );
 }
 
-ExperienceSection.displayName =
-  "ExperienceSection";
+ExperienceSection.displayName = "ExperienceSection";
 
-export default React.memo(
-  ExperienceSection,
-);
+export default React.memo(ExperienceSection);

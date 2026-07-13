@@ -138,30 +138,30 @@ export function ExperienceCard({
                 className="shrink-0"
               >
                 {hasLogo(experience) ? (
-         <div
-  className={cn(
-    "relative h-16 w-16 overflow-hidden rounded-2xl",
-    "bg-white",
-    "border border-white",
-    "shadow-xl",
-    "shadow-cyan-500/20",
-    "ring-2 ring-cyan-400/15",
-    "transition-all duration-300",
-    "group-hover:scale-105",
-    "group-hover:shadow-cyan-400/35",
-    "group-hover:ring-cyan-300/30",
-  )}
->
-  <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-slate-100" />
+                  <div
+                    className={cn(
+                      "relative h-16 w-16 overflow-hidden rounded-2xl",
+                      "bg-white",
+                      "border border-white",
+                      "shadow-xl",
+                      "shadow-cyan-500/20",
+                      "ring-2 ring-cyan-400/15",
+                      "transition-all duration-300",
+                      "group-hover:scale-105",
+                      "group-hover:shadow-cyan-400/35",
+                      "group-hover:ring-cyan-300/30",
+                    )}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-slate-100" />
 
-  <Image
-    src={experience.companyLogo!.url}
-    alt={experience.company}
-    fill
-    sizes="64px"
-    className="relative z-10 object-contain p-2"
-  />
-</div>
+                    <Image
+                      src={experience.companyLogo!.url}
+                      alt={experience.company}
+                      fill
+                      sizes="64px"
+                      className="relative z-10 object-contain p-2"
+                    />
+                  </div>
                 ) : (
                   <div
                     className={cn(
